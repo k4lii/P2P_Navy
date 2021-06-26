@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/comunication.hpp
+iostream
+-
+sstream
+-
+string.h
+-
+
+/home/lorris/projet_perso/P2P_Navy/src/communication.cpp
+comunication.hpp
+/home/lorris/projet_perso/P2P_Navy/src/comunication.hpp
+
+/home/lorris/projet_perso/P2P_Navy/src/main.cpp
+comunication.hpp
+/home/lorris/projet_perso/P2P_Navy/src/comunication.hpp
+
