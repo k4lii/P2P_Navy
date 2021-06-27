@@ -1,16 +1,16 @@
 #pragma once
-#include <iostream>
 #include <string.h>
-#include <boost/array.hpp>
+#include <iostream>
 #include <boost/asio.hpp>
+
+using namespace boost::asio;
+using namespace boost::asio::ip;
 
 class Network
 {
     public:
         Network();
         ~Network();
-        std::string receive(std::string str);
-        void send(std::string str);   
-    private:
-        int status;
+        void Send(std::string message, std::string ip, int port);
+        std::string Receive(int port);
 };
