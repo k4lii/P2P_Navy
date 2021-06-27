@@ -74,3 +74,78 @@ void HandleTurns::defense(char *pid, char **map)
         map[x + 1][y *= 2] = 'o';
     }
 }
+
+void HandleTurns::print_latest_message(int value)
+{
+    if (value == 1)
+        my_putstr("\nEnemy won");
+    else if (value == 0)
+        my_putstr("\nI won");
+}
+
+int HandleTurns::win_lose(char **map, char **enemy_map)
+{
+    int nb_map = 0;
+    int nb_enemy_map = 0;
+
+    for (int y = 2; y != 10; y++) {
+        for (int x = 2; x != 17; x++) {
+            if (map[y][x] == 'x')
+                nb_map += 1;
+            if (enemy_map[y][x] == 'x')
+                nb_enemy_map += 1;
+        }
+    }
+    if (nb_map == 14)
+        return (1);
+    if (nb_enemy_map == 14)
+        return (0);
+    return (2);
+}
+
+int HandleTurns::player2(char *str, char **argv, char **map, char **enemy_map)
+{
+    int receive_value = 0;
+    int ret_value = 2;
+
+    usleep(100);
+    send_user(my_getnbr(my_itoa(getpid(), str)), argv[1]);
+    receive(&receive_value);
+    if (receive_value >= 1)
+        my_putstr("successfully connected\n");
+    print_navy(map, enemy_map);
+    while (ret_value > 1) {
+        defense(argv[1], map);
+        ret_value = win_lose(map, enemy_map);
+        if (ret_value == 1 || ret_value == 0) {
+            print_navy(map, enemy_map);
+            return (ret_value);
+        }
+        attack(argv[1], enemy_map);
+        print_navy(map, enemy_map);
+    }
+}
+
+int HandleTurns::player1(char *str, int pid_j2, char **map, char **enemy_map)
+{
+    int receive_value = 0;
+    int ret_value = 2;
+
+    // print ip and port
+    // receive(&receive_value);
+    pid_j2 = receive_value;
+    if (receive_value >= 1)
+        my_putstr("\nenemy connected\n");
+    send_user(10, my_itoa(receive_value, str));
+    print_navy(map, enemy_map);
+    while (ret_value > 1) {
+        attack(my_itoa(pid_j2, str), enemy_map);
+        ret_value = win_lose(map, enemy_map);
+        if (ret_value == 1 || ret_value == 0) {
+            print_navy(map, enemy_map);
+            return (ret_value);
+        }
+        defense(my_itoa(pid_j2, str), map);
+        print_navy(map, enemy_map);
+    }
+}

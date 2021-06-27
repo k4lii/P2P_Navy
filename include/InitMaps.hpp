@@ -20,5 +20,4 @@ class InitMaps
         int init_boat(char *filepath, char **map);
         int get_x(char c, char **map);
         int get_y(char c, char **map);
-
 };
