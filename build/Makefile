@@ -169,6 +169,87 @@ P2P_Navy/fast:
 	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/build
 .PHONY : P2P_Navy/fast
 
+src/GameFunc.o: src/GameFunc.cpp.o
+
+.PHONY : src/GameFunc.o
+
+# target to build an object file
+src/GameFunc.cpp.o:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o
+.PHONY : src/GameFunc.cpp.o
+
+src/GameFunc.i: src/GameFunc.cpp.i
+
+.PHONY : src/GameFunc.i
+
+# target to preprocess a source file
+src/GameFunc.cpp.i:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.i
+.PHONY : src/GameFunc.cpp.i
+
+src/GameFunc.s: src/GameFunc.cpp.s
+
+.PHONY : src/GameFunc.s
+
+# target to generate assembly for a file
+src/GameFunc.cpp.s:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.s
+.PHONY : src/GameFunc.cpp.s
+
+src/HandleTurns.o: src/HandleTurns.cpp.o
+
+.PHONY : src/HandleTurns.o
+
+# target to build an object file
+src/HandleTurns.cpp.o:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o
+.PHONY : src/HandleTurns.cpp.o
+
+src/HandleTurns.i: src/HandleTurns.cpp.i
+
+.PHONY : src/HandleTurns.i
+
+# target to preprocess a source file
+src/HandleTurns.cpp.i:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.i
+.PHONY : src/HandleTurns.cpp.i
+
+src/HandleTurns.s: src/HandleTurns.cpp.s
+
+.PHONY : src/HandleTurns.s
+
+# target to generate assembly for a file
+src/HandleTurns.cpp.s:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.s
+.PHONY : src/HandleTurns.cpp.s
+
+src/InitMaps.o: src/InitMaps.cpp.o
+
+.PHONY : src/InitMaps.o
+
+# target to build an object file
+src/InitMaps.cpp.o:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o
+.PHONY : src/InitMaps.cpp.o
+
+src/InitMaps.i: src/InitMaps.cpp.i
+
+.PHONY : src/InitMaps.i
+
+# target to preprocess a source file
+src/InitMaps.cpp.i:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.i
+.PHONY : src/InitMaps.cpp.i
+
+src/InitMaps.s: src/InitMaps.cpp.s
+
+.PHONY : src/InitMaps.s
+
+# target to generate assembly for a file
+src/InitMaps.cpp.s:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.s
+.PHONY : src/InitMaps.cpp.s
+
 src/Network.o: src/Network.cpp.o
 
 .PHONY : src/Network.o
@@ -236,6 +317,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... P2P_Navy"
+	@echo "... src/GameFunc.o"
+	@echo "... src/GameFunc.i"
+	@echo "... src/GameFunc.s"
+	@echo "... src/HandleTurns.o"
+	@echo "... src/HandleTurns.i"
+	@echo "... src/HandleTurns.s"
+	@echo "... src/InitMaps.o"
+	@echo "... src/InitMaps.i"
+	@echo "... src/InitMaps.s"
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"

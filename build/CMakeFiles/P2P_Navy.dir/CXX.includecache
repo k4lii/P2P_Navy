@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+../include/GameFunc.hpp
+string.h
+-
+iostream
+-
+unistd.h
+-
+fcntl.h
+-
+stdlib.h
+-
+
+../include/HandleTurns.hpp
+string.h
+-
+iostream
+-
+unistd.h
+-
+fcntl.h
+-
+stdlib.h
+-
+
 ../include/Network.hpp
 string.h
 -
@@ -14815,6 +14839,16 @@ boost/winapi/basic_types.hpp
 /home/lorris/.conan/data/boost/1.69.0/_/_/package/ca891ed5c8e67ebb3e46639c100abdbca6d8b11e/include/boost/winapi/timers.hpp
 boost/winapi/basic_types.hpp
 -
+
+/home/lorris/projet_perso/P2P_Navy/src/GameFunc.cpp
+GameFunc.hpp
+/home/lorris/projet_perso/P2P_Navy/src/GameFunc.hpp
+
+/home/lorris/projet_perso/P2P_Navy/src/HandleTurns.cpp
+HandleTurns.hpp
+/home/lorris/projet_perso/P2P_Navy/src/HandleTurns.hpp
+
+/home/lorris/projet_perso/P2P_Navy/src/InitMaps.cpp
 
 /home/lorris/projet_perso/P2P_Navy/src/Network.cpp
 Network.hpp

@@ -99,7 +99,7 @@
 //     t_matrix matrix;
 //     int ret_value;
 //     int pid_j2;
-//     char *str = malloc(sizeof(char) * 20);
+//     char *str = (char *)malloc(sizeof(char) * 20);
 
 //     if (error_gestion(argv, argc) == 0)
 //         return (0);
