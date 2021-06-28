@@ -16,8 +16,6 @@ int main(int argc, char **argv)
         return (84);
     }
     matrix = map_obj.init_matrix(argv[1]);
-    handleturns_obj.print_navy(matrix.map, matrix.enemy_map);
-    
-    // handleturns_obj.player_managment(int argc, matrix.map, matrix.enemy_map);
+    handleturns_obj.player_managment(argc, matrix);
     return 0;
 }

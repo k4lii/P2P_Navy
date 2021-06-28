@@ -57,6 +57,8 @@ stdlib.h
 -
 
 ../include/struct.hpp
+vector
+-
 
 /home/lorris/.conan/data/boost/1.69.0/_/_/package/ca891ed5c8e67ebb3e46639c100abdbca6d8b11e/include/boost/array.hpp
 boost/detail/workaround.hpp

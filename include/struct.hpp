@@ -1,4 +1,6 @@
+#include <vector>
+
 typedef struct matrix {
-    char **map;
-    char **enemy_map;
+    std::vector<std::string> map;
+    std::vector<std::string> enemy_map;
 } t_matrix;

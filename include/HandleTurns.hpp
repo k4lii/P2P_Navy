@@ -13,14 +13,14 @@ class HandleTurns
     public:
         HandleTurns();
         ~HandleTurns();
-        void print_navy(char **map, char **enemy_map);//private
-        int player_managment(int argc, char **map, char **enemy_map);
+        int player_managment(int argc, t_matrix matrix);
     private:
         Network net;
         InitMaps map;
-        int win_lose(char **map, char **enemy_map);
-        void defense(char **map);
-        void attack(char **enemy_map);
+        void print_navy(t_matrix matrix);
+        int win_lose(t_matrix matrix);
+        void defense(std::vector<std::string> &map);
+        void attack(std::vector<std::string> &enemy_map);
         std::string user_entry_attack();
         int verify_user_choice_error(std::string choice);
 };

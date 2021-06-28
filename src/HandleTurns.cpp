@@ -27,7 +27,7 @@ std::string HandleTurns::user_entry_attack()
     return(user_choice);
 }
 
-void HandleTurns::attack(char **enemy_map)
+void HandleTurns::attack(std::vector<std::string> &enemy_map)
 {
     std::string receive;
     std::string user_choice;
@@ -40,15 +40,15 @@ void HandleTurns::attack(char **enemy_map)
     std::cout << "receive->"<< receive << std::endl;
     if (receive == "1\n") {
         std::cout << "hit" << std::endl;
-        enemy_map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
+        enemy_map[receive.at(0)].at(receive.at(1)) = 'x';
     }
     else if (receive == "0\n") {
         std::cout << "missed" << std::endl;
-        enemy_map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
+        enemy_map[receive.at(0)].at(receive.at(1)) = 'o';
     }
 }
 
-void HandleTurns::defense(char **map)
+void HandleTurns::defense(std::vector<std::string> &map)
 {
     std::string receive;
 
@@ -59,26 +59,28 @@ void HandleTurns::defense(char **map)
         usleep(10000);
         net.Send("1\n", "127.0.0.1", 9999);
         std::cout << ": hit" << std::endl;
-        map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
+        map[receive.at(0)].at(receive.at(1)) = 'x';
+        // map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
     }
     else if (this->map.is_boat(receive.at(0), receive.at(1), map) == 0) {
         usleep(10000);
         net.Send("0\n", "127.0.0.1", 9999);
         std::cout << ": missed" << std::endl;
-        map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
+        map[receive.at(0)].at(receive.at(1)) = 'o';
+        //  map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
     }
 }
 
-int HandleTurns::win_lose(char **map, char **enemy_map)
+int HandleTurns::win_lose(t_matrix matrix)
 {
     int nb_map = 0;
     int nb_enemy_map = 0;
 
     for (int y = 2; y != 10; y++) {
         for (int x = 2; x != 17; x++) {
-            if (map[y][x] == 'x')
+            if (matrix.map[y].at(x) == 'x')
                 nb_map += 1;
-            if (enemy_map[y][x] == 'x')
+            if (matrix.enemy_map[y].at(x) == 'x')
                 nb_enemy_map += 1;
         }
     }
@@ -93,29 +95,32 @@ int HandleTurns::win_lose(char **map, char **enemy_map)
     return 0;
 }
 
-int HandleTurns::player_managment(int argc, char **map, char **enemy_map)
+int HandleTurns::player_managment(int argc, t_matrix matrix)
 {
-    print_navy(map, enemy_map);
+    print_navy(matrix);
     while (1) {
         //verifier si la connexion est bien etablie
         if(argc == 3){ // if player 1 -> attack
-            attack(enemy_map);
-            defense(map);
+            attack(matrix.enemy_map);
+            defense(matrix.map);
         } else if (argc == 2) { // if player 2 -> defense
-            defense(map);
-            attack(enemy_map);
+            defense(matrix.map);
+            attack(matrix.enemy_map);
         }
-        print_navy(map, enemy_map);
-        win_lose(map, enemy_map);
+        print_navy(matrix);
+        win_lose(matrix);
     }
+    return 0;
 }
 
-void HandleTurns::print_navy(char **map, char **enemy_map)
+void HandleTurns::print_navy(t_matrix matrix)
 {
     std::cout << "\nmy positions:\n" << std::endl;
-    for (int y = 0; y != 10 ; y++)
-        std::cout << map[y] << std::endl;
+    for (long unsigned int y = 0; y != matrix.map.size() ; y++){
+        std::cout << matrix.map[y] << std::endl;
+    }
     std::cout << "\nenemy's positions:\n" << std::endl;
-    for (int y = 0; y != 10 ; y++)
-        std::cout << enemy_map[y] << std::endl;
+    for (long unsigned int y = 0; y != matrix.enemy_map.size() ; y++){
+        std::cout << matrix.enemy_map[y] << std::endl;
+    }
 }

@@ -10,60 +10,51 @@
 InitMaps::InitMaps(){}
 InitMaps::~InitMaps(){}
 
-int InitMaps::is_boat(int x, int y, char **map)
+int InitMaps::is_boat(int x, int y, std::vector<std::string> map)
 {
     x += 1;
     y *= 2;
-    if ((map[x][y] >= '1' && map[x][y] <= '8') || (map[x][y] == 'x'))
+    if ((map[x].at(y) >= '1' && map[x].at(y) <= '8') || (map[x].at(y) == 'x'))
         return (1);
     return (0);
 }
 
-void InitMaps::fill_navy_str(char **map)
+void InitMaps::fill_navy_str(std::vector<std::string> &map)
 {
     int var = 0;
 
-    for (int y = 0; y != 10; y++) {
-        for (int x = 0; x != 17; x++) {
-            if (x % 2)
-                map[y][x] = ' ';
+    for (int x = 0; x != 10; x++) {
+        for (int y = 0; y != 17; y++) {
+            if (y % 2)
+                map[x].at(y) = ' ';
             else
-                map[y][x] = '.';
+                map[x].at(y) = '.';
         }
     }
-    map[0][0] = ' ';
-    map[0][1] = '|';
-    for (int x = 2; x != 18; x++) {
-        map[0][x] = 65 + var;
-        x++;
-        map[0][x] = ' ';
+    map[0].at(0) = ' ';
+    map[0].at(0) = '|';
+    for (int y = 2; y != 18; y++) {
+        map[0].at(y) = 65 + var;
+        y++;
+        map[0].at(y) = ' ';
         var += 1;
     }
-    map[0][17] = '\0';
+    map[0].at(17) = '\0';
 
-
-     var = 0; //-> pas convaincu
-    for (int x = 0; x != 17; x++)
-        map[1][x] = '-';
-    map[1][1] = '+';
+    var = 0;
+    for (int y = 0; y != 17; y++)
+        map[1].at(y) = '-';
+    map[1].at(1) = '+';
     for (int y = 2; y != 10; y++) {
-        map[y][0] = 49 + var;
+        map[y].at(0) = 49 + var;
         var += 1;
-        map[y][1] = '|';
+        map[y].at(1) = '|';
     }
+    for (int x = 0; x != 10; x++)
+        map[x].pop_back();
 }
 
-char** InitMaps::create_2d_str(int x_size, int y_size)
-{
-    char **map = (char **)malloc(sizeof(char *) * 10);
-
-    for (int i = 0; i < y_size; i++)
-        map[i] = (char *)malloc(sizeof(char) * x_size);
-    fill_navy_str(map);
-    return (map);
-}
-
-int InitMaps::init_boat(char *filepath, char **map)
+int InitMaps::init_boat(char *filepath, std::vector<std::string> &map)
 {
     
     int fd = open(filepath, O_RDONLY);
@@ -88,7 +79,7 @@ int InitMaps::init_boat(char *filepath, char **map)
     return (0);
 }
 
-void InitMaps::draw_boat(char *line_buffer, char **map)
+void InitMaps::draw_boat(char *line_buffer, std::vector<std::string> &map)
 {
     int x1 = get_x(line_buffer[2], map);
     int y1 = get_y(line_buffer[3], map);
@@ -111,16 +102,17 @@ void InitMaps::draw_boat(char *line_buffer, char **map)
 t_matrix InitMaps::init_matrix(char *path)
 {
     t_matrix matrix;
-//  std::cout << "before allocate create2d" << std::endl;
-    matrix.map = create_2d_str(10, 18);
-    matrix.enemy_map = create_2d_str(10, 18);
-    // std::cout << "after allocate create2d" << std::endl;
+    for (int x = 0; x != 10; x++) {
+        matrix.map.push_back("..................");
+        matrix.enemy_map.push_back("..................");
+    }
+    fill_navy_str(matrix.map);
+    fill_navy_str(matrix.enemy_map);
     init_boat(path, matrix.map);
-    //  std::cout << "after init boat" << std::endl;
     return (matrix);
 }
 
-int InitMaps::get_x(char c, char **map)
+int InitMaps::get_x(char c, std::vector<std::string> map)
 {
     for (int i = 0; i < 18; i++) {
         if (map[0][i] == c)
@@ -129,7 +121,7 @@ int InitMaps::get_x(char c, char **map)
     return -1;
 }
 
-int InitMaps::get_y(char c, char **map)
+int InitMaps::get_y(char c, std::vector<std::string> map)
 {
     for (int i = 0; i < 10; i++) {
         if (map[i][0] == c)
@@ -137,37 +129,3 @@ int InitMaps::get_y(char c, char **map)
     }
     return -1;
 }
-
-// char *convert_signum_to_norm(int nb)
-// {
-//     char *nb_str = (char *)malloc(sizeof(char) * 4);
-//     char *str;
-//     char *new_str = (char *)malloc(sizeof(char) * 4);
-
-//     str = my_itoa(nb, nb_str);
-//     new_str[0] += str[0] += 16;
-//     new_str[1] = str[1];
-//     return (new_str);
-// }
-
-// int convert_norm_to_signum(char *choice)
-// {
-//     char *nb_str = (char *)malloc(sizeof(char) * 4);
-//     int new_str = 0;
-
-//     new_str = (choice[0] - 64) * 10;
-//     new_str += choice[1] - 48;
-//     return (new_str);
-// }
-
-// void convert_sig_to_coordonate(int nb, int *x, int *y)
-// {
-//     char *nb_str = (char *)malloc(sizeof(char) * 4);
-//     char *str;
-
-//     *x = 0;
-//     *y = 0;
-//     str = my_itoa(nb, nb_str);
-//     *y = str[0] - 48;
-//     *x = str[1] - 48;
-// }
