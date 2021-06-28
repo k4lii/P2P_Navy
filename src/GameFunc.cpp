@@ -8,7 +8,6 @@ int GameFunc::nb_col(char *av)
     int li = 0;
     int fd;
     char buf[1];
-    int size;
 
     fd = open(av, O_RDONLY);
     for (int i = 0; read(fd, buf, 1) != 0; i++) {
@@ -26,7 +25,6 @@ int GameFunc::nb_lines(char *av)
     int co_save = 0;
     int fd;
     char buf[1];
-    int size;
 
     fd = open(av, O_RDONLY);
     for (int i = 0; read(fd, buf, 1) != 0; i++) {
@@ -46,13 +44,12 @@ char** GameFunc::map_in_str(char *av)
 {
     int li = nb_lines(av);
     int size_co = nb_col(av);
-    int l = 0;
     int c = 0;
     char **lettre = (char **)malloc(sizeof(char *) * li + 1);
     int fd = open(av, O_RDONLY);
     char buf[1];
 
-    for (l; l < li; l++)
+    for (int l = 0; l < li; l++)
         lettre[l] = (char *)malloc(sizeof(char) * size_co + 1);
     for (int l = 0; read(fd, buf, 1) != 0; c++) {
         lettre[l][c] = buf[0];
@@ -83,6 +80,7 @@ int GameFunc::verify_rooms(char **pos_file)
         return (84);
     else if (nb == 14)
         return (0);
+    return(0);
 }
 
 int GameFunc::verify_boat_order(char **pos_file)
@@ -93,6 +91,7 @@ int GameFunc::verify_boat_order(char **pos_file)
         if (pos_file[y][3] > pos_file[y][6])
             return (84);
     }
+    return(0);
 }
 
 int GameFunc::verify_lenght(char **pos_file)
@@ -122,6 +121,7 @@ int GameFunc::verify_x_y(char **pos_file)
         return (84);
     else if (nb == 16)
         return (0);
+    return(0);
 }
 
 

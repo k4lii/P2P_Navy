@@ -5,17 +5,19 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+#include "Network.hpp"
+
 class HandleTurns
 {
     public:
         HandleTurns();
         ~HandleTurns();
-        int read_error_gestion(char *buffer);
-        void print_error_attack(char *choice);
-        void attack(char *pid, char **enemy_map);
-        void defense(char *pid, char **map);
-        int player2(char *str, char **argv, char **map, char **enemy_map);
-        int player1(char *str, int pid_j2, char **map, char **enemy_map);
+        int player(int argc, char **map, char **enemy_map);
+        Network net;
+    private:
         int win_lose(char **map, char **enemy_map);
-        void print_latest_message(int value);
+        void defense(char **map);
+        void attack(char **enemy_map);
+        std::string user_entry_attack();
+        int verify_user_choice_error(std::string choice);
 };
