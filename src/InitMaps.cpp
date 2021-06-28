@@ -12,9 +12,7 @@ InitMaps::~InitMaps(){}
 
 int InitMaps::is_boat(int x, int y, std::vector<std::string> map)
 {
-    x += 1;
-    y *= 2;
-    if ((map[x].at(y) >= '1' && map[x].at(y) <= '8') || (map[x].at(y) == 'x'))
+    if ((map[y].at(x) >= '1' && map[y].at(x) <= '8') || (map[y].at(x) == 'x'))
         return (1);
     return (0);
 }

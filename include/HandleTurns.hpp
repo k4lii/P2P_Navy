@@ -8,6 +8,12 @@
 #include "Network.hpp"
 #include "InitMaps.hpp"
 
+typedef struct pos {
+    int status;
+    int x;
+    int y;
+} t_pos;
+
 class HandleTurns
 {
     public:
@@ -17,6 +23,7 @@ class HandleTurns
     private:
         Network net;
         InitMaps map;
+        t_pos data_to_position(std::string data, std::vector<std::string> map);
         void print_navy(t_matrix matrix);
         int win_lose(t_matrix matrix);
         void defense(std::vector<std::string> &map);

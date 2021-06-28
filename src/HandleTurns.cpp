@@ -27,6 +27,24 @@ std::string HandleTurns::user_entry_attack()
     return(user_choice);
 }
 
+t_pos HandleTurns::data_to_position(std::string data, std::vector<std::string> map)
+{
+    t_pos pos = {0,0,0};
+
+    for(int x = 2; x != map[0].size(); x++) {
+        if(map[0].at(x) == data.at(0)) {
+            pos.x = x;
+            for(int y = 2; y != map.size(); y++) {
+                if(map[y].at(0) == data.at(1)){
+                    pos.y = y;
+                    pos.status = 1;
+                }
+            }
+        }
+    }
+    return (pos);
+}
+
 void HandleTurns::attack(std::vector<std::string> &enemy_map)
 {
     std::string receive;
@@ -38,36 +56,34 @@ void HandleTurns::attack(std::vector<std::string> &enemy_map)
     receive = this->net.Receive(9999); //receive data -> give if attack hit or not
     //receive receive 1 or 2 from defense if hit or not to update ennemy map
     std::cout << "receive->"<< receive << std::endl;
-    if (receive == "1\n") {
-        std::cout << "hit" << std::endl;
-        enemy_map[receive.at(0)].at(receive.at(1)) = 'x';
-    }
-    else if (receive == "0\n") {
-        std::cout << "missed" << std::endl;
-        enemy_map[receive.at(0)].at(receive.at(1)) = 'o';
-    }
+    // if (receive == "1") {
+    //     std::cout << "hit" << std::endl;
+    //     enemy_map[receive.at(0)].at(receive.at(1)) = 'x';
+    // }
+    // else if (receive == "0") {
+    //     std::cout << "missed" << std::endl;
+    //     enemy_map[receive.at(0)].at(receive.at(1)) = 'o';
+    // }
 }
 
 void HandleTurns::defense(std::vector<std::string> &map)
 {
     std::string receive;
-
+    
     std::cout << "waiting for enemy's attack..." << std::endl;
     receive = this->net.Receive(9999);
     std::cout << "receive->"<< receive << std::endl;
-    if (this->map.is_boat(receive.at(0), receive.at(1), map) == 1) {
+    t_pos pos = data_to_position(receive, map);
+    if (this->map.is_boat(pos.y, pos.x, map) == 1) {
         usleep(10000);
         net.Send("1\n", "127.0.0.1", 9999);
         std::cout << ": hit" << std::endl;
-        map[receive.at(0)].at(receive.at(1)) = 'x';
-        // map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
-    }
-    else if (this->map.is_boat(receive.at(0), receive.at(1), map) == 0) {
+        map[pos.y].at(pos.x) = 'x';
+    } else if (this->map.is_boat(pos.y, pos.x, map) == 0) {
         usleep(10000);
         net.Send("0\n", "127.0.0.1", 9999);
         std::cout << ": missed" << std::endl;
-        map[receive.at(0)].at(receive.at(1)) = 'o';
-        //  map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
+        map[pos.y].at(pos.x) = 'o';
     }
 }
 
@@ -108,7 +124,7 @@ int HandleTurns::player_managment(int argc, t_matrix matrix)
             attack(matrix.enemy_map);
         }
         print_navy(matrix);
-        win_lose(matrix);
+        // win_lose(matrix);
     }
     return 0;
 }
