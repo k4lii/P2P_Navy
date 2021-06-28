@@ -97,14 +97,14 @@ int HandleTurns::win_lose(char **map, char **enemy_map)
 
 int HandleTurns::player(int argc, char **map, char **enemy_map)
 {
-    int receive_value = 0;
-
     print_navy(map, enemy_map);
     while (1) {
         if(argc == 3){ // if player 1 -> attack
             attack(enemy_map);
+            defense(map);
         } else if (argc == 2) { // if player 2 -> defense
             defense(map);
+            attack(enemy_map);
         }
         print_navy(map, enemy_map);
         win_lose(map, enemy_map);
