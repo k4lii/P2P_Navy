@@ -5,7 +5,12 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#include "struct.hpp"
+#include <vector>
+
+typedef struct matrix {
+    std::vector<std::string> map;
+    std::vector<std::string> enemy_map;
+} t_matrix;
 
 #define FILE_LEN 33
 #define LINE_LEN 7

@@ -21,7 +21,7 @@ std::string HandleTurns::user_entry_attack()
     std::string user_choice;
     do {
         user_choice.clear();
-        std::cout << "attack: " << std::endl;
+        std::cout << "attack=";
         std::cin >> user_choice;
         } while (verify_user_choice_error(user_choice) != 1);
     return(user_choice);
@@ -54,13 +54,13 @@ void HandleTurns::attack(std::vector<std::string> &enemy_map)
     t_pos pos = data_to_position(user_choice, enemy_map);
     usleep(100000); //wait to let initialize server/client
     this->net.Send(user_choice, "127.0.0.1", 9999); //send to server
-    std::cout << "receive mode on attack->" << std::endl;
+    // std::cout << "receive mode on attack->" << std::endl;
     receive = this->net.Receive(9999); //receive data -> receive if attack hit or not 1 or 0
     if (receive == "1") {
         std::cout << "hit" << std::endl;
         enemy_map[pos.y].at(pos.x) = 'x';
     } else if (receive == "0") {
-        std::cout << "missed" << std::endl;
+        std::cout << user_choice << " : missed" << std::endl;
         enemy_map[pos.y].at(pos.x) = 'o';
     }
 }
@@ -74,15 +74,13 @@ void HandleTurns::defense(std::vector<std::string> &map)
     t_pos pos = data_to_position(receive, map);
     if (this->map.is_boat(pos.x, pos.y, map) == 1) {
         usleep(10000);
-        std::cout << "send from defense if hit->" << std::endl;
         net.Send("1", "127.0.0.1", 9999);
-        std::cout << ": hit" << std::endl;
+        std::cout << receive << " : hit" << std::endl;
         map[pos.y].at(pos.x) = 'x';
     } else if (this->map.is_boat(pos.x, pos.y, map) == 0) {
         usleep(10000);
-         std::cout << "send from defense if missed->" << std::endl;
         net.Send("0", "127.0.0.1", 9999);
-        std::cout << ": missed" << std::endl;
+        std::cout << receive << " : missed" << std::endl;
         map[pos.y].at(pos.x) = 'o';
     }
 }

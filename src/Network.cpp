@@ -21,7 +21,7 @@ std::string Network::Receive(int port)
     io_service io_service;
     tcp::acceptor acceptor_server(io_service, tcp::endpoint(tcp::v4(), port));// Listening for any new incomming connection at port 9999 with IPv4 protocol
     tcp::socket server_socket(io_service);// Creating socket object
-    std::cout << "waiting for connection" << std::endl;
+    // std::cout << "waiting for connection" << std::endl;
     acceptor_server.accept(server_socket);  // waiting for connection
     streambuf buf;
     read_until(server_socket, buf, "\n");
