@@ -169,33 +169,6 @@ P2P_Navy/fast:
 	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/build
 .PHONY : P2P_Navy/fast
 
-src/GameFunc.o: src/GameFunc.cpp.o
-
-.PHONY : src/GameFunc.o
-
-# target to build an object file
-src/GameFunc.cpp.o:
-	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o
-.PHONY : src/GameFunc.cpp.o
-
-src/GameFunc.i: src/GameFunc.cpp.i
-
-.PHONY : src/GameFunc.i
-
-# target to preprocess a source file
-src/GameFunc.cpp.i:
-	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.i
-.PHONY : src/GameFunc.cpp.i
-
-src/GameFunc.s: src/GameFunc.cpp.s
-
-.PHONY : src/GameFunc.s
-
-# target to generate assembly for a file
-src/GameFunc.cpp.s:
-	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.s
-.PHONY : src/GameFunc.cpp.s
-
 src/HandleTurns.o: src/HandleTurns.cpp.o
 
 .PHONY : src/HandleTurns.o
@@ -277,6 +250,33 @@ src/Network.cpp.s:
 	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/Network.cpp.s
 .PHONY : src/Network.cpp.s
 
+src/VerifyBoatsFile.o: src/VerifyBoatsFile.cpp.o
+
+.PHONY : src/VerifyBoatsFile.o
+
+# target to build an object file
+src/VerifyBoatsFile.cpp.o:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o
+.PHONY : src/VerifyBoatsFile.cpp.o
+
+src/VerifyBoatsFile.i: src/VerifyBoatsFile.cpp.i
+
+.PHONY : src/VerifyBoatsFile.i
+
+# target to preprocess a source file
+src/VerifyBoatsFile.cpp.i:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.i
+.PHONY : src/VerifyBoatsFile.cpp.i
+
+src/VerifyBoatsFile.s: src/VerifyBoatsFile.cpp.s
+
+.PHONY : src/VerifyBoatsFile.s
+
+# target to generate assembly for a file
+src/VerifyBoatsFile.cpp.s:
+	$(MAKE) -f CMakeFiles/P2P_Navy.dir/build.make CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.s
+.PHONY : src/VerifyBoatsFile.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -317,9 +317,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... P2P_Navy"
-	@echo "... src/GameFunc.o"
-	@echo "... src/GameFunc.i"
-	@echo "... src/GameFunc.s"
 	@echo "... src/HandleTurns.o"
 	@echo "... src/HandleTurns.i"
 	@echo "... src/HandleTurns.s"
@@ -329,6 +326,9 @@ help:
 	@echo "... src/Network.o"
 	@echo "... src/Network.i"
 	@echo "... src/Network.s"
+	@echo "... src/VerifyBoatsFile.o"
+	@echo "... src/VerifyBoatsFile.i"
+	@echo "... src/VerifyBoatsFile.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

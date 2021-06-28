@@ -1,9 +1,9 @@
-#include "GameFunc.hpp"
+#include "VerifyBoatsFile.hpp"
 
-GameFunc::GameFunc(){}
-GameFunc::~GameFunc(){}
+VerifyBoatsFile::VerifyBoatsFile(){}
+VerifyBoatsFile::~VerifyBoatsFile(){}
 
-int GameFunc::nb_col(char *av)
+int VerifyBoatsFile::nb_col(char *av)
 {
     int li = 0;
     int fd;
@@ -19,7 +19,7 @@ int GameFunc::nb_col(char *av)
     return (li);
 }
 
-int GameFunc::nb_lines(char *av)
+int VerifyBoatsFile::nb_lines(char *av)
 {
     int co_size = 1;
     int co_save = 0;
@@ -40,7 +40,7 @@ int GameFunc::nb_lines(char *av)
     return (co_save);
 }
 
-char** GameFunc::map_in_str(char *av)
+char** VerifyBoatsFile::map_in_str(char *av)
 {
     int li = nb_lines(av);
     int size_co = nb_col(av);
@@ -62,7 +62,7 @@ char** GameFunc::map_in_str(char *av)
     return (lettre); 
 }
 
-int GameFunc::verify_rooms(char **pos_file)
+int VerifyBoatsFile::verify_rooms(char **pos_file)
 {
     int nb = 0;
 
@@ -83,7 +83,7 @@ int GameFunc::verify_rooms(char **pos_file)
     return(0);
 }
 
-int GameFunc::verify_boat_order(char **pos_file)
+int VerifyBoatsFile::verify_boat_order(char **pos_file)
 {
     for (int y = 0; y != 4; y++) {
         if (pos_file[y][2] > pos_file[y][5])
@@ -94,7 +94,7 @@ int GameFunc::verify_boat_order(char **pos_file)
     return(0);
 }
 
-int GameFunc::verify_lenght(char **pos_file)
+int VerifyBoatsFile::verify_lenght(char **pos_file)
 {
     for (int y = 0; y != 4; y++) {
         if (strlen(pos_file[y]) > 8 || strlen(pos_file[y]) < 6)
@@ -103,7 +103,7 @@ int GameFunc::verify_lenght(char **pos_file)
     return (0);
 }
 
-int GameFunc::verify_x_y(char **pos_file)
+int VerifyBoatsFile::verify_x_y(char **pos_file)
 {
     int nb = 0;
 
@@ -124,18 +124,18 @@ int GameFunc::verify_x_y(char **pos_file)
     return(0);
 }
 
-int GameFunc::verify_boats_file(char **argv, int argc)
+int VerifyBoatsFile::verify_boats_file(char **argv, int argc)
 {
-    if (argc == 2) {
-        char **pos_file = map_in_str(argv[2]);
-        // if (verify_rooms(pos_file) == 84)
-        //     return (84);
-        // if (verify_lenght(pos_file) == 84)
-        //     return (84);
-        // if (verify_x_y(pos_file) == 84)
-        //     return (84);
-        // if (verify_boat_order(pos_file) == 84)
-        //     return (84);
+    if (argc == 2 || argc == 3) {
+        char **pos_file = map_in_str(argv[1]);
+        if (verify_rooms(pos_file) == 84)
+            return (84);
+        if (verify_lenght(pos_file) == 84)
+            return (84);
+        if (verify_x_y(pos_file) == 84)
+            return (84);
+        if (verify_boat_order(pos_file) == 84)
+            return (84);
     }
     return (0);
 }

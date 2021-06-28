@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/GameFunc.hpp
-string.h
--
-iostream
--
-unistd.h
--
-fcntl.h
--
-stdlib.h
--
-
 ../include/HandleTurns.hpp
 string.h
 -
@@ -54,6 +42,18 @@ string.h
 iostream
 -
 boost/asio.hpp
+-
+
+../include/VerifyBoatsFile.hpp
+string.h
+-
+iostream
+-
+unistd.h
+-
+fcntl.h
+-
+stdlib.h
 -
 
 ../include/struct.hpp
@@ -14860,10 +14860,6 @@ boost/winapi/basic_types.hpp
 boost/winapi/basic_types.hpp
 -
 
-/home/lorris/projet_perso/P2P_Navy/src/GameFunc.cpp
-GameFunc.hpp
-/home/lorris/projet_perso/P2P_Navy/src/GameFunc.hpp
-
 /home/lorris/projet_perso/P2P_Navy/src/HandleTurns.cpp
 HandleTurns.hpp
 /home/lorris/projet_perso/P2P_Navy/src/HandleTurns.hpp
@@ -14876,11 +14872,15 @@ InitMaps.hpp
 Network.hpp
 /home/lorris/projet_perso/P2P_Navy/src/Network.hpp
 
+/home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.cpp
+VerifyBoatsFile.hpp
+/home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.hpp
+
 /home/lorris/projet_perso/P2P_Navy/src/main.cpp
 HandleTurns.hpp
 /home/lorris/projet_perso/P2P_Navy/src/HandleTurns.hpp
 InitMaps.hpp
 /home/lorris/projet_perso/P2P_Navy/src/InitMaps.hpp
-GameFunc.hpp
-/home/lorris/projet_perso/P2P_Navy/src/GameFunc.hpp
+VerifyBoatsFile.hpp
+/home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.hpp
 

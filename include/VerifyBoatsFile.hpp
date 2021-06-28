@@ -5,19 +5,19 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-class GameFunc
+class VerifyBoatsFile
 {
     public:
-        GameFunc();
-        ~GameFunc();
-        int nb_col(char *av);
-        int nb_lines(char *av);
+        VerifyBoatsFile();
+        ~VerifyBoatsFile();
+        int verify_boats_file(char **argv, int argc);
+    private:
         char **map_in_str(char *av);
         int verify_rooms(char **pos_file);
         int verify_boat_order(char **pos_file);
-        int verify_boats_file(char **argv, int argc);
         int verify_lenght(char **pos_file);
         int verify_x_y(char **pos_file);
-    private:
+        int nb_col(char *av);
+        int nb_lines(char *av);
         
 };

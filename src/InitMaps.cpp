@@ -42,7 +42,7 @@ void InitMaps::fill_navy_str(char **map)
     map[0][17] = '\0';
 
 
-    // var = 0; -> pas convaincu
+     var = 0; //-> pas convaincu
     for (int x = 0; x != 17; x++)
         map[1][x] = '-';
     map[1][1] = '+';
@@ -53,18 +53,19 @@ void InitMaps::fill_navy_str(char **map)
     }
 }
 
-char** InitMaps::create_2d_str(char **argv, int argc)
+char** InitMaps::create_2d_str(int x_size, int y_size)
 {
     char **map = (char **)malloc(sizeof(char *) * 10);
 
-    for (int i = 0; i < 10; i++)
-        map[i] = (char *)malloc(sizeof(char) * 18);
+    for (int i = 0; i < y_size; i++)
+        map[i] = (char *)malloc(sizeof(char) * x_size);
     fill_navy_str(map);
     return (map);
 }
 
 int InitMaps::init_boat(char *filepath, char **map)
 {
+    
     int fd = open(filepath, O_RDONLY);
     char *file_buffer = (char *) malloc(sizeof(char) * FILE_LEN);
     char *line_buffer = (char *) malloc(sizeof(char) * LINE_LEN);
@@ -75,12 +76,14 @@ int InitMaps::init_boat(char *filepath, char **map)
     for (int i = 0; file_buffer[i]; i++) {
         if (file_buffer[i] == '\n') {
             line_buffer_i = 0;
+            // std::cout << file_buffer[i] << std::endl;
             draw_boat(line_buffer, map);
             continue;
         }
         line_buffer[line_buffer_i] = file_buffer[i];
         line_buffer_i++;
     }
+    // std::cout << "after fd " << std::endl;
     draw_boat(line_buffer, map);
     return (0);
 }
@@ -105,13 +108,15 @@ void InitMaps::draw_boat(char *line_buffer, char **map)
     map[y1][x1] = line_buffer[0];
 }
 
-t_matrix InitMaps::init_matrix(int argc, char **argv, int player)
+t_matrix InitMaps::init_matrix(char *path)
 {
     t_matrix matrix;
-
-    matrix.map = create_2d_str(argv, argc);
-    matrix.enemy_map = create_2d_str(argv, argc);
-    init_boat(argv[player], matrix.map);
+//  std::cout << "before allocate create2d" << std::endl;
+    matrix.map = create_2d_str(10, 18);
+    matrix.enemy_map = create_2d_str(10, 18);
+    // std::cout << "after allocate create2d" << std::endl;
+    init_boat(path, matrix.map);
+    //  std::cout << "after init boat" << std::endl;
     return (matrix);
 }
 

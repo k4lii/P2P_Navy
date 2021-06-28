@@ -57,22 +57,9 @@ include CMakeFiles/P2P_Navy.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/P2P_Navy.dir/flags.make
 
-CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
-CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o: ../src/GameFunc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o -c /home/lorris/projet_perso/P2P_Navy/src/GameFunc.cpp
-
-CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lorris/projet_perso/P2P_Navy/src/GameFunc.cpp > CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.i
-
-CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lorris/projet_perso/P2P_Navy/src/GameFunc.cpp -o CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.s
-
 CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
 CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o: ../src/HandleTurns.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o -c /home/lorris/projet_perso/P2P_Navy/src/HandleTurns.cpp
 
 CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.i: cmake_force
@@ -85,7 +72,7 @@ CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.s: cmake_force
 
 CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
 CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o: ../src/InitMaps.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o -c /home/lorris/projet_perso/P2P_Navy/src/InitMaps.cpp
 
 CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.i: cmake_force
@@ -98,7 +85,7 @@ CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.s: cmake_force
 
 CMakeFiles/P2P_Navy.dir/src/Network.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
 CMakeFiles/P2P_Navy.dir/src/Network.cpp.o: ../src/Network.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/P2P_Navy.dir/src/Network.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/P2P_Navy.dir/src/Network.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/P2P_Navy.dir/src/Network.cpp.o -c /home/lorris/projet_perso/P2P_Navy/src/Network.cpp
 
 CMakeFiles/P2P_Navy.dir/src/Network.cpp.i: cmake_force
@@ -108,6 +95,19 @@ CMakeFiles/P2P_Navy.dir/src/Network.cpp.i: cmake_force
 CMakeFiles/P2P_Navy.dir/src/Network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/P2P_Navy.dir/src/Network.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lorris/projet_perso/P2P_Navy/src/Network.cpp -o CMakeFiles/P2P_Navy.dir/src/Network.cpp.s
+
+CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
+CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o: ../src/VerifyBoatsFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lorris/projet_perso/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o -c /home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.cpp
+
+CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.cpp > CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.i
+
+CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lorris/projet_perso/P2P_Navy/src/VerifyBoatsFile.cpp -o CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.s
 
 CMakeFiles/P2P_Navy.dir/src/main.cpp.o: CMakeFiles/P2P_Navy.dir/flags.make
 CMakeFiles/P2P_Navy.dir/src/main.cpp.o: ../src/main.cpp
@@ -124,19 +124,19 @@ CMakeFiles/P2P_Navy.dir/src/main.cpp.s: cmake_force
 
 # Object files for target P2P_Navy
 P2P_Navy_OBJECTS = \
-"CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o" \
 "CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o" \
 "CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o" \
 "CMakeFiles/P2P_Navy.dir/src/Network.cpp.o" \
+"CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o" \
 "CMakeFiles/P2P_Navy.dir/src/main.cpp.o"
 
 # External object files for target P2P_Navy
 P2P_Navy_EXTERNAL_OBJECTS =
 
-bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/GameFunc.cpp.o
 bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/HandleTurns.cpp.o
 bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o
 bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/Network.cpp.o
+bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o
 bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/src/main.cpp.o
 bin/P2P_Navy: CMakeFiles/P2P_Navy.dir/build.make
 bin/P2P_Navy: /home/lorris/.conan/data/boost/1.69.0/_/_/package/ca891ed5c8e67ebb3e46639c100abdbca6d8b11e/lib/libboost_system.a
