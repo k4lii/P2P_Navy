@@ -14,7 +14,7 @@ int InitMaps::is_boat(int x, int y, char **map)
 {
     x += 1;
     y *= 2;
-    if (map[x][y] >= '1' && map[x][y] <= '8' || map[x][y] == 'x')
+    if ((map[x][y] >= '1' && map[x][y] <= '8') || (map[x][y] == 'x'))
         return (1);
     return (0);
 }
@@ -42,7 +42,7 @@ void InitMaps::fill_navy_str(char **map)
     map[0][17] = '\0';
 
 
-    int var = 0;
+    // var = 0; -> pas convaincu
     for (int x = 0; x != 17; x++)
         map[1][x] = '-';
     map[1][1] = '+';
@@ -93,11 +93,11 @@ void InitMaps::draw_boat(char *line_buffer, char **map)
     int y2 = get_y(line_buffer[6], map);
 
     if (x1 == x2) {
-        for (y1; y1 < y2; y1++)
+        for (; y1 < y2; y1++)
             map[y1][x1] = line_buffer[0];
     }
     else if (y1 == y2) {
-        for (x1; x1 < x2; x1++) {
+        for (; x1 < x2; x1++) {
             if (x1 % 2 == 0)
                 map[y1][x1] = line_buffer[0];
         }
@@ -115,13 +115,13 @@ t_matrix InitMaps::init_matrix(int argc, char **argv, int player)
     return (matrix);
 }
 
-
 int InitMaps::get_x(char c, char **map)
 {
     for (int i = 0; i < 18; i++) {
         if (map[0][i] == c)
             return (i);
     }
+    return -1;
 }
 
 int InitMaps::get_y(char c, char **map)
@@ -130,6 +130,7 @@ int InitMaps::get_y(char c, char **map)
         if (map[i][0] == c)
             return (i);
     }
+    return -1;
 }
 
 // char *convert_signum_to_norm(int nb)

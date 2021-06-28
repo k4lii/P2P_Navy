@@ -5,11 +5,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-#include "struct.hpp"
-
-#define FILE_LEN 33
-#define LINE_LEN 7
-
 class GameFunc
 {
     public:

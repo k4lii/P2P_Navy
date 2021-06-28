@@ -124,23 +124,18 @@ int GameFunc::verify_x_y(char **pos_file)
     return(0);
 }
 
-
-
 int GameFunc::verify_boats_file(char **argv, int argc)
 {
-    char **pos_file;
-
-    if (argc == 2)
-        pos_file = map_in_str(argv[1]);
-    else if (argc == 3)
-        pos_file = map_in_str(argv[2]);
-    if (verify_rooms(pos_file) == 84)
-        return (84);
-    if (verify_lenght(pos_file) == 84)
-        return (84);
-    if (verify_x_y(pos_file) == 84)
-        return (84);
-    if (verify_boat_order(pos_file) == 84)
-        return (84);
+    if (argc == 2) {
+        char **pos_file = map_in_str(argv[2]);
+        // if (verify_rooms(pos_file) == 84)
+        //     return (84);
+        // if (verify_lenght(pos_file) == 84)
+        //     return (84);
+        // if (verify_x_y(pos_file) == 84)
+        //     return (84);
+        // if (verify_boat_order(pos_file) == 84)
+        //     return (84);
+    }
     return (0);
 }

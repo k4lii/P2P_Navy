@@ -6,15 +6,18 @@
 #include <stdlib.h>
 
 #include "Network.hpp"
+#include "InitMaps.hpp"
 
 class HandleTurns
 {
     public:
         HandleTurns();
         ~HandleTurns();
-        int player(int argc, char **map, char **enemy_map);
-        Network net;
+        int player_managment(int argc, char **map, char **enemy_map);
     private:
+        Network net;
+        InitMaps map;
+        void print_navy(char **map, char **enemy_map);
         int win_lose(char **map, char **enemy_map);
         void defense(char **map);
         void attack(char **enemy_map);

@@ -29,47 +29,43 @@ std::string HandleTurns::user_entry_attack()
 
 void HandleTurns::attack(char **enemy_map)
 {
-    std::string receive_value;
+    std::string receive;
     std::string user_choice;
 
     user_choice = user_entry_attack(); //std::cin and verify if positions are corrects
     usleep(100000); //wait to let initialize server/client
-    net.Send(user_choice, "127.0.0.1", 9999); //send to server
-    receive_value = net.Receive(); //receive data -> give if attack hit or not
-    std::cout << receive_value << ": " << std::endl;
-    if (receive_value >= 1) {
+    this->net.Send(user_choice, "127.0.0.1", 9999); //send to server
+    receive = this->net.Receive(9999); //receive data -> give if attack hit or not
+    //receive receive 1 or 2 from defense if hit or not to update ennemy map
+    std::cout << "receive->"<< receive << std::endl;
+    if (receive == "1\n") {
         std::cout << "hit" << std::endl;
-        enemy_map[receive_value.at(0) + 1][(receive_value.at(1) *= 2)] = 'x';
+        enemy_map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
     }
-    else if (receive_value == 0) {
+    else if (receive == "0\n") {
         std::cout << "missed" << std::endl;
-        enemy_map[x + 1][y *= 2] = 'o';
+        enemy_map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
     }
 }
 
 void HandleTurns::defense(char **map)
 {
-    int x;
-    int y;
-    std::strind receive;
-    int receive_value = 0;
+    std::string receive;
 
     std::cout << "waiting for enemy's attack..." << std::endl;
-    receive = net.Receive()
-    // receive(&receive_value);
-    convert_sig_to_coordonate(receive_value, &x, &y);
-    my_putstr(convert_signum_to_norm(receive_value));
-    if (is_boat(x, y, map) == 1) {
+    receive = this->net.Receive(9999);
+    std::cout << "receive->"<< receive << std::endl;
+    if (this->map.is_boat(receive.at(0), receive.at(1), map) == 1) {
         usleep(10000);
-        send_user(10, pid);
+        net.Send("1\n", "127.0.0.1", 9999);
         std::cout << ": hit" << std::endl;
-        map[x + 1][y *= 2] = 'x';
+        map[receive.at(0) + 1][receive.at(1) *= 2] = 'x';
     }
-    else if (is_boat(x, y, map) == 0) {
+    else if (this->map.is_boat(receive.at(0), receive.at(1), map) == 0) {
         usleep(10000);
-        send_user(0, pid);
+        net.Send("0\n", "127.0.0.1", 9999);
         std::cout << ": missed" << std::endl;
-        map[x + 1][y *= 2] = 'o';
+        map[receive.at(0) + 1][receive.at(1) *= 2] = 'o';
     }
 }
 
@@ -86,19 +82,22 @@ int HandleTurns::win_lose(char **map, char **enemy_map)
                 nb_enemy_map += 1;
         }
     }
-    if (nb_map == 14)
+    if (nb_map == 14) {
         std::cout << "Enemy win" << std::endl;
         exit(0);
-    if (nb_enemy_map == 14)
+    }
+    if (nb_enemy_map == 14) {
         std::cout << "You win" << std::endl;
         exit(0);
+    }
     return 0;
 }
 
-int HandleTurns::player(int argc, char **map, char **enemy_map)
+int HandleTurns::player_managment(int argc, char **map, char **enemy_map)
 {
     print_navy(map, enemy_map);
     while (1) {
+        //verifier si la connexion est bien etablie
         if(argc == 3){ // if player 1 -> attack
             attack(enemy_map);
             defense(map);
@@ -109,4 +108,14 @@ int HandleTurns::player(int argc, char **map, char **enemy_map)
         print_navy(map, enemy_map);
         win_lose(map, enemy_map);
     }
+}
+
+void HandleTurns::print_navy(char **map, char **enemy_map)
+{
+    std::cout << "\nmy positions:\n" << std::endl;
+    for (int y = 0; y != 10 ; y++)
+        std::cout << map[y] << std::endl;
+    std::cout << "\nenemy's positions:\n" << std::endl;
+    for (int y = 0; y != 10 ; y++)
+        std::cout << enemy_map[y] << std::endl;
 }
