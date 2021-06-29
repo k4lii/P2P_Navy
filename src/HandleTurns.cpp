@@ -5,13 +5,17 @@ HandleTurns::~HandleTurns(){}
 
 int HandleTurns::verify_user_choice_error(std::string choice)
 {
+    if (choice.size() > 2 ) {
+        std::cout << "forbidden position" << std::endl;
+        return (0);
+    }
     if (choice.at(1) < '1' || choice.at(1) > '8') {
         std::cout << "wrong position" << std::endl;
-        return (4);
+        return (0);
     }
     if (choice.at(0) < 'A' || choice.at(0) > 'H') {
         std::cout << "wrong position" << std::endl;
-        return (4);
+        return (0);
     }
     return (1);
 }
@@ -51,11 +55,11 @@ void HandleTurns::attack(std::vector<std::string> &enemy_map)
     std::string user_choice;
 
     user_choice = user_entry_attack(); //std::cin and verify if positions are corrects
-    t_pos pos = data_to_position(user_choice, enemy_map);
+    t_pos pos = data_to_position(user_choice, enemy_map);// get posx and poxy from user choice
     usleep(100000); //wait to let initialize server/client
-    this->net.Send(user_choice, "127.0.0.1", 9999); //send to server
-    // std::cout << "receive mode on attack->" << std::endl;
-    receive = this->net.Receive(9999); //receive data -> receive if attack hit or not 1 or 0
+    this->net.Send(user_choice, "127.0.0.1", 3333); //send to server
+    usleep(100000);
+    receive = this->net.Receive(3333); //receive data -> receive if attack hit or not 1 or 0
     if (receive == "1") {
         std::cout << "hit" << std::endl;
         enemy_map[pos.y].at(pos.x) = 'x';
@@ -70,16 +74,17 @@ void HandleTurns::defense(std::vector<std::string> &map)
     std::string receive;
     
     std::cout << "waiting for enemy's attack..." << std::endl;
-    receive = this->net.Receive(9999);
-    t_pos pos = data_to_position(receive, map);
+    receive = this->net.Receive(3333);
+    usleep(100000);
+    t_pos pos = data_to_position(receive, map);//get receive posx and posy
     if (this->map.is_boat(pos.x, pos.y, map) == 1) {
         usleep(10000);
-        net.Send("1", "127.0.0.1", 9999);
+        net.Send("1", "127.0.0.1", 3333);
         std::cout << receive << " : hit" << std::endl;
         map[pos.y].at(pos.x) = 'x';
     } else if (this->map.is_boat(pos.x, pos.y, map) == 0) {
         usleep(10000);
-        net.Send("0", "127.0.0.1", 9999);
+        net.Send("0", "127.0.0.1", 3333);
         std::cout << receive << " : missed" << std::endl;
         map[pos.y].at(pos.x) = 'o';
     }
@@ -111,9 +116,9 @@ int HandleTurns::win_lose(t_matrix matrix)
 
 int HandleTurns::player_managment(int argc, t_matrix matrix)
 {
+    //verifier si la connexion est bien etablie
     print_navy(matrix);
     while (1) {
-        //verifier si la connexion est bien etablie
         if(argc == 3){ // if player 1 -> attack
             attack(matrix.enemy_map);
             defense(matrix.map);
