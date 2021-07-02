@@ -119,6 +119,7 @@ int HandleTurns::player_managment(int argc, t_matrix matrix)
     //verifier si la connexion est bien etablie
     print_navy(matrix);
     while (1) {
+        win_lose(matrix);
         if(argc == 3){ // if player 1 -> attack
             attack(matrix.enemy_map);
             defense(matrix.map);
@@ -127,7 +128,6 @@ int HandleTurns::player_managment(int argc, t_matrix matrix)
             attack(matrix.enemy_map);
         }
         print_navy(matrix);
-        win_lose(matrix);
     }
     return 0;
 }
