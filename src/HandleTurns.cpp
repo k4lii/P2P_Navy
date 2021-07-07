@@ -10,11 +10,11 @@ int HandleTurns::verify_user_choice_error(std::string choice)
         return (0);
     }
     if (choice.at(1) < '1' || choice.at(1) > '8') {
-        std::cout << "wrong position" << std::endl;
+        std::cout << "forbidden position" << std::endl;
         return (0);
     }
     if (choice.at(0) < 'A' || choice.at(0) > 'H') {
-        std::cout << "wrong position" << std::endl;
+        std::cout << "forbidden position" << std::endl;
         return (0);
     }
     return (1);
@@ -25,7 +25,7 @@ std::string HandleTurns::user_entry_attack()
     std::string user_choice;
     do {
         user_choice.clear();
-        std::cout << "attack=";
+        std::cout << "[ATTACK]=";
         std::cin >> user_choice;
         } while (verify_user_choice_error(user_choice) != 1);
     return(user_choice);
@@ -49,17 +49,18 @@ t_pos HandleTurns::data_to_position(std::string data, std::vector<std::string> m
     return (pos);
 }
 
-void HandleTurns::attack(std::vector<std::string> &enemy_map)
+void HandleTurns::attack(std::vector<std::string> &enemy_map, char **argv)
 {
     std::string receive;
     std::string user_choice;
+    std::string ip(argv[3]);
 
     user_choice = user_entry_attack(); //std::cin and verify if positions are corrects
     t_pos pos = data_to_position(user_choice, enemy_map);// get posx and poxy from user choice
     usleep(100000); //wait to let initialize server/client
-    this->net.Send(user_choice, "127.0.0.1", 3333); //send to server
+    this->net.Send(user_choice, ip, atoi(argv[2])); //send to server
     usleep(100000);
-    receive = this->net.Receive(3333); //receive data -> receive if attack hit or not 1 or 0
+    receive = this->net.Receive(atoi(argv[2])); //receive data -> receive if attack hit or not 1 or 0
     if (receive == "1") {
         std::cout << "hit" << std::endl;
         enemy_map[pos.y].at(pos.x) = 'x';
@@ -69,22 +70,24 @@ void HandleTurns::attack(std::vector<std::string> &enemy_map)
     }
 }
 
-void HandleTurns::defense(std::vector<std::string> &map)
+void HandleTurns::defense(std::vector<std::string> &map, char **argv)
 {
     std::string receive;
+    std::string ip(argv[3]);
     
     std::cout << "waiting for enemy's attack..." << std::endl;
-    receive = this->net.Receive(3333);
+    receive = this->net.Receive(atoi(argv[2]));
     usleep(100000);
+
     t_pos pos = data_to_position(receive, map);//get receive posx and posy
     if (this->map.is_boat(pos.x, pos.y, map) == 1) {
         usleep(10000);
-        net.Send("1", "127.0.0.1", 3333);
+        net.Send("1", ip, atoi(argv[2]));
         std::cout << receive << " : hit" << std::endl;
         map[pos.y].at(pos.x) = 'x';
     } else if (this->map.is_boat(pos.x, pos.y, map) == 0) {
         usleep(10000);
-        net.Send("0", "127.0.0.1", 3333);
+        net.Send("0", ip, atoi(argv[2]));
         std::cout << receive << " : missed" << std::endl;
         map[pos.y].at(pos.x) = 'o';
     }
@@ -105,28 +108,29 @@ int HandleTurns::win_lose(t_matrix matrix)
     }
     if (nb_map == 14) {
         std::cout << "Enemy win" << std::endl;
-        exit(0);
+        return(1);
     }
     if (nb_enemy_map == 14) {
         std::cout << "You win" << std::endl;
-        exit(0);
+        return(1);
     }
     return 0;
 }
 
-int HandleTurns::player_managment(int argc, t_matrix matrix)
+int HandleTurns::player_managment(int argc, char **argv, t_matrix matrix)
 {
     //verifier si la connexion est bien etablie
     print_navy(matrix);
     while (1) {
-        win_lose(matrix);
-        if(argc == 3){ // if player 1 -> attack
-            attack(matrix.enemy_map);
-            defense(matrix.map);
-        } else if (argc == 2) { // if player 2 -> defense
-            defense(matrix.map);
-            attack(matrix.enemy_map);
+        if(argc == 5){ // if player 1 -> attack
+            attack(matrix.enemy_map, argv);
+            defense(matrix.map, argv);
+        } else if (argc == 4) { // if player 2 -> defense
+            defense(matrix.map, argv);
+            attack(matrix.enemy_map, argv);
         }
+        if(win_lose(matrix) == 1)
+            return 0;
         print_navy(matrix);
     }
     return 0;

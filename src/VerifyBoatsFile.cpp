@@ -124,7 +124,7 @@ int VerifyBoatsFile::verify_x_y(char **pos_file)
     return(0);
 }
 
-int VerifyBoatsFile::verify_boats_file(char **argv, int argc)
+int VerifyBoatsFile::verify_boats_file(char **argv, int argc) //generer des positions aleatoire
 {
     if (argc == 2 || argc == 3) {
         char **pos_file = map_in_str(argv[1]);

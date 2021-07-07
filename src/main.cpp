@@ -2,6 +2,8 @@
 #include "InitMaps.hpp"
 #include "VerifyBoatsFile.hpp"
 
+#include <string.h>
+
 int main(int argc, char **argv)
 {
     t_matrix matrix;
@@ -16,6 +18,6 @@ int main(int argc, char **argv)
         return (84);
     }
     matrix = map_obj.init_matrix(argv[1]);
-    handleturns_obj.player_managment(argc, matrix);
+    handleturns_obj.player_managment(argc, argv, matrix);
     return 0;
 }
