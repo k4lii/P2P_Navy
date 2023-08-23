@@ -1,6 +1,6 @@
 [requires]
-boost/1.69.0
-
+boost/1.83.0
+    
 [options]
 
 [generators]

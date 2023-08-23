@@ -44,7 +44,7 @@ file(GLOB P2P_Navy_SourceFiles src/*.cpp)
 
 add_executable("P2P_Navy" ${P2P_Navy_SourceFiles})
 
-find_package(Boost 1.69.0 COMPONENTS system serialization thread REQUIRED)
+find_package(Boost 1.83.0 COMPONENTS system serialization thread REQUIRED)
 if (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries("P2P_Navy" ${Boost_LIBRARIES})
