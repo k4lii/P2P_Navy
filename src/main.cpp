@@ -11,8 +11,8 @@ int main(int argc, char **argv)
     InitMaps map_obj;
     VerifyBoatsFile verifboatfile_obj;
 
-    // if (error_gestion(argv, argc) == 0)
-    //     return (0);
+    //if (error_gestion(argv, argc) == 0)
+ //        return (0);
     if (verifboatfile_obj.verify_boats_file(argv, argc) == 84) {
         std::cout << "Incorrect boat file" << std::endl;
         return (84);

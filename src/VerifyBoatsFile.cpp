@@ -126,7 +126,10 @@ int VerifyBoatsFile::verify_x_y(char **pos_file)
 
 int VerifyBoatsFile::verify_boats_file(char **argv, int argc) //generer des positions aleatoire
 {
-    if (argc == 2 || argc == 3) {
+    if (argc == 2 || argc == 3) { //improve error gestion
+      //  printf("%s\n", argv[0]); //prog name
+       // printf("%s\n", argv[1]);
+       // exit(0);
         char **pos_file = map_in_str(argv[1]);
         if (verify_rooms(pos_file) == 84)
             return (84);

@@ -58,8 +58,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa"
-      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa"
+      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s"
+      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -70,18 +70,18 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa'
+        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s'
         
-        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_114fd/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_114fd.dir/build.make CMakeFiles/cmTC_114fd.dir/build
-        Building CXX object CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o
-        /Library/Developer/CommandLineTools/usr/bin/c++   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_18e61/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_18e61.dir/build.make CMakeFiles/cmTC_18e61.dir/build
+        Building CXX object CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o
+        /Library/Developer/CommandLineTools/usr/bin/c++   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin22.5.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
         clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
-         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin22.5.0
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include"
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/Library/Frameworks"
@@ -93,14 +93,14 @@ events:
          /Library/Developer/CommandLineTools/usr/include
          /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks (framework directory)
         End of search list.
-        Linking CXX executable cmTC_114fd
-        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_114fd.dir/link.txt --verbose=1
-        /Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_114fd 
+        Linking CXX executable cmTC_18e61
+        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18e61.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_18e61 
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin22.5.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
-         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_114fd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_18e61 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld  PROJECT:ld64-857.1
         BUILD 23:13:29 May  7 2023
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -141,18 +141,18 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa']
+        ignore line: [Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_114fd/fast]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_114fd.dir/build.make CMakeFiles/cmTC_114fd.dir/build]
-        ignore line: [Building CXX object CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_18e61/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_18e61.dir/build.make CMakeFiles/cmTC_18e61.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++   -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin22.5.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
         ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-tcx0Oa -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-br6M0s -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.3/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin22.5.0]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/Library/Frameworks"]
@@ -164,14 +164,14 @@ events:
         ignore line: [ /Library/Developer/CommandLineTools/usr/include]
         ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_114fd]
-        ignore line: [/opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_114fd.dir/link.txt --verbose=1]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_114fd ]
+        ignore line: [Linking CXX executable cmTC_18e61]
+        ignore line: [/opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_18e61.dir/link.txt --verbose=1]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_18e61 ]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin22.5.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_114fd -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.0.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -o cmTC_18e61 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
           arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -186,11 +186,11 @@ events:
           arg [-syslibroot] ==> ignore
           arg [/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_114fd] ==> ignore
+          arg [cmTC_18e61] ==> ignore
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_114fd.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_18e61.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
@@ -218,8 +218,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-JjJ9Sp"
-      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-JjJ9Sp"
+      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-uiztT4"
+      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-uiztT4"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread  "
       CMAKE_EXE_LINKER_FLAGS: "  "
@@ -231,24 +231,24 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-JjJ9Sp'
+        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-uiztT4'
         
-        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9bb2d/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_9bb2d.dir/build.make CMakeFiles/cmTC_9bb2d.dir/build
-        Building CXX object CMakeFiles/cmTC_9bb2d.dir/src.cxx.o
-        /Library/Developer/CommandLineTools/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_9bb2d.dir/src.cxx.o -MF CMakeFiles/cmTC_9bb2d.dir/src.cxx.o.d -o CMakeFiles/cmTC_9bb2d.dir/src.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-JjJ9Sp/src.cxx
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ea570/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_ea570.dir/build.make CMakeFiles/cmTC_ea570.dir/build
+        Building CXX object CMakeFiles/cmTC_ea570.dir/src.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_ea570.dir/src.cxx.o -MF CMakeFiles/cmTC_ea570.dir/src.cxx.o.d -o CMakeFiles/cmTC_ea570.dir/src.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-uiztT4/src.cxx
         clang: warning: -lboost_date_time: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_serialization: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_system: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_thread: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]
-        Linking CXX executable cmTC_9bb2d
-        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9bb2d.dir/link.txt --verbose=1
-        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_9bb2d.dir/src.cxx.o -o cmTC_9bb2d 
+        Linking CXX executable cmTC_ea570
+        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea570.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_ea570.dir/src.cxx.o -o cmTC_ea570 
         ld: library not found for -lboost_date_time
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
-        make[1]: *** [cmTC_9bb2d] Error 1
-        make: *** [cmTC_9bb2d/fast] Error 2
+        make[1]: *** [cmTC_ea570] Error 1
+        make: *** [cmTC_ea570/fast] Error 2
         
       exitCode: 2
   -
@@ -261,8 +261,8 @@ events:
     checks:
       - "Check if compiler accepts -pthread"
     directories:
-      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-3f5O77"
-      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-3f5O77"
+      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-MG6OvM"
+      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-MG6OvM"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread  "
       CMAKE_EXE_LINKER_FLAGS: "  "
@@ -274,24 +274,24 @@ events:
       variable: "THREADS_HAVE_PTHREAD_ARG"
       cached: true
       stdout: |
-        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-3f5O77'
+        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-MG6OvM'
         
-        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_95f5d/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_95f5d.dir/build.make CMakeFiles/cmTC_95f5d.dir/build
-        Building CXX object CMakeFiles/cmTC_95f5d.dir/CheckForPthreads.cxx.o
-        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_95f5d.dir/CheckForPthreads.cxx.o -MF CMakeFiles/cmTC_95f5d.dir/CheckForPthreads.cxx.o.d -o CMakeFiles/cmTC_95f5d.dir/CheckForPthreads.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-3f5O77/CheckForPthreads.cxx
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_13162/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_13162.dir/build.make CMakeFiles/cmTC_13162.dir/build
+        Building CXX object CMakeFiles/cmTC_13162.dir/CheckForPthreads.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_13162.dir/CheckForPthreads.cxx.o -MF CMakeFiles/cmTC_13162.dir/CheckForPthreads.cxx.o.d -o CMakeFiles/cmTC_13162.dir/CheckForPthreads.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-MG6OvM/CheckForPthreads.cxx
         clang: warning: -lboost_date_time: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_serialization: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_system: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_thread: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]
-        Linking CXX executable cmTC_95f5d
-        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_95f5d.dir/link.txt --verbose=1
-        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_95f5d.dir/CheckForPthreads.cxx.o -o cmTC_95f5d  -pthread 
+        Linking CXX executable cmTC_13162
+        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13162.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread    -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_13162.dir/CheckForPthreads.cxx.o -o cmTC_13162  -pthread 
         ld: library not found for -lboost_date_time
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
-        make[1]: *** [cmTC_95f5d] Error 1
-        make: *** [cmTC_95f5d/fast] Error 2
+        make[1]: *** [cmTC_13162] Error 1
+        make: *** [cmTC_13162/fast] Error 2
         
       exitCode: 2
   -
@@ -305,8 +305,8 @@ events:
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-dNdcBw"
-      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-dNdcBw"
+      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-r6eC6S"
+      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-r6eC6S"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread  "
       CMAKE_EXE_LINKER_FLAGS: "  "
@@ -318,24 +318,24 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-dNdcBw'
+        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-r6eC6S'
         
-        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_967cd/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_967cd.dir/build.make CMakeFiles/cmTC_967cd.dir/build
-        Building CXX object CMakeFiles/cmTC_967cd.dir/CheckFunctionExists.cxx.o
-        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_967cd.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_967cd.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_967cd.dir/CheckFunctionExists.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-dNdcBw/CheckFunctionExists.cxx
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cb0d5/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_cb0d5.dir/build.make CMakeFiles/cmTC_cb0d5.dir/build
+        Building CXX object CMakeFiles/cmTC_cb0d5.dir/CheckFunctionExists.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_cb0d5.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_cb0d5.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_cb0d5.dir/CheckFunctionExists.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-r6eC6S/CheckFunctionExists.cxx
         clang: warning: -lboost_date_time: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_serialization: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_system: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_thread: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]
-        Linking CXX executable cmTC_967cd
-        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_967cd.dir/link.txt --verbose=1
-        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_967cd.dir/CheckFunctionExists.cxx.o -o cmTC_967cd  -lpthreads 
+        Linking CXX executable cmTC_cb0d5
+        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb0d5.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_cb0d5.dir/CheckFunctionExists.cxx.o -o cmTC_cb0d5  -lpthreads 
         ld: library not found for -lboost_date_time
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
-        make[1]: *** [cmTC_967cd] Error 1
-        make: *** [cmTC_967cd/fast] Error 2
+        make[1]: *** [cmTC_cb0d5] Error 1
+        make: *** [cmTC_cb0d5/fast] Error 2
         
       exitCode: 2
   -
@@ -349,8 +349,8 @@ events:
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-Dd973g"
-      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-Dd973g"
+      source: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-HpAmVT"
+      binary: "/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-HpAmVT"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread  "
       CMAKE_EXE_LINKER_FLAGS: "  "
@@ -362,24 +362,24 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-Dd973g'
+        Change Dir: '/Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-HpAmVT'
         
-        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0e698/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_0e698.dir/build.make CMakeFiles/cmTC_0e698.dir/build
-        Building CXX object CMakeFiles/cmTC_0e698.dir/CheckFunctionExists.cxx.o
-        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_0e698.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_0e698.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_0e698.dir/CheckFunctionExists.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-Dd973g/CheckFunctionExists.cxx
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_b9426/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_b9426.dir/build.make CMakeFiles/cmTC_b9426.dir/build
+        Building CXX object CMakeFiles/cmTC_b9426.dir/CheckFunctionExists.cxx.o
+        /Library/Developer/CommandLineTools/usr/bin/c++   -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -MD -MT CMakeFiles/cmTC_b9426.dir/CheckFunctionExists.cxx.o -MF CMakeFiles/cmTC_b9426.dir/CheckFunctionExists.cxx.o.d -o CMakeFiles/cmTC_b9426.dir/CheckFunctionExists.cxx.o -c /Users/lforham/Desktop/P2P_Navy/build/CMakeFiles/CMakeScratch/TryCompile-HpAmVT/CheckFunctionExists.cxx
         clang: warning: -lboost_date_time: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_serialization: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_system: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lboost_thread: 'linker' input unused [-Wunused-command-line-argument]
         clang: warning: -lpthread: 'linker' input unused [-Wunused-command-line-argument]
-        Linking CXX executable cmTC_0e698
-        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e698.dir/link.txt --verbose=1
-        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0e698.dir/CheckFunctionExists.cxx.o -o cmTC_0e698  -lpthread 
+        Linking CXX executable cmTC_b9426
+        /opt/homebrew/Cellar/cmake/3.27.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b9426.dir/link.txt --verbose=1
+        /Library/Developer/CommandLineTools/usr/bin/c++  -pthread -fPIC -g -g3 -Wall -Wextra -lboost_date_time -lboost_serialization -lboost_system -lboost_thread -lpthread   -DCHECK_FUNCTION_EXISTS=pthread_create -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_b9426.dir/CheckFunctionExists.cxx.o -o cmTC_b9426  -lpthread 
         ld: library not found for -lboost_date_time
         clang: error: linker command failed with exit code 1 (use -v to see invocation)
-        make[1]: *** [cmTC_0e698] Error 1
-        make: *** [cmTC_0e698/fast] Error 2
+        make[1]: *** [cmTC_b9426] Error 1
+        make: *** [cmTC_b9426/fast] Error 2
         
       exitCode: 2
 ...
