@@ -9,8 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o.d"
   "CMakeFiles/P2P_Navy.dir/src/main.cpp.o"
   "CMakeFiles/P2P_Navy.dir/src/main.cpp.o.d"
-  "bin/P2P_Navy"
-  "bin/P2P_Navy.pdb"
+  "P2P_Navy"
+  "P2P_Navy.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

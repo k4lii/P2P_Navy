@@ -1,7 +1,7 @@
 [requires]
 boost/1.83.0
-    
-[options]
+# Add other dependencies here
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain

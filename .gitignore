@@ -1,2 +1,15 @@
-.vscode
-./build/*
+/build/
+*.cmake
+/conanbuild.sh
+/conanrun.sh
+/deactivate_conanbuild.sh
+/deactivate_conanrun.sh
+*.a
+*.so
+*.dylib
+*.lib
+*.exe
+*.out
+conanbuildenv-release-x86_64.sh
+conanrunenv-release-x86_64.sh
+CMakePresets.json
