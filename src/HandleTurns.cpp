@@ -1,3 +1,6 @@
+#include <ncurses.h>
+#undef timeout  // Undefine the timeout macro to avoid conflicts with Boost
+#include <boost/asio.hpp>
 #include "HandleTurns.hpp"
 #include "colors.hpp"
 #include <iostream>
@@ -5,23 +8,53 @@
 
 HandleTurns::HandleTurns(bool is_server, Network &net)
     : is_server(is_server), net(net), is_my_turn(is_server) {
-    initscr();             // Start ncurses mode
-    cbreak();              // Disable line buffering
-    keypad(stdscr, TRUE);  // Enable F1, F2 etc.
-    echo();                // Enable echoing of typed characters
-    curs_set(0);           // Hide the cursor
-    start_color();         // Start color functionality
+    initscr();
+    cbreak();
+    keypad(stdscr, TRUE);
+    echo();
+    curs_set(1);
+    start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_BLUE, COLOR_BLACK);
-
-    printw("HandleTurns initialized. Is server: %s\n", is_server ? "true" : "false");
-    refresh();
+    init_pair(3, COLOR_CYAN, COLOR_BLACK);
 }
 
 HandleTurns::~HandleTurns() {
-    endwin();  // End ncurses mode
-    std::cout << "HandleTurns destroyed" << std::endl;
+    endwin();
 }
+
+void HandleTurns::draw_borders(WINDOW* win, int start_row, int start_col, int num_rows, int num_cols) {
+    wattron(win, COLOR_PAIR(3));
+    box(win, 0, 0);
+    mvwprintw(win, 0, (num_cols - strlen(" My Positions ")) / 2, " My Positions ");
+    wattroff(win, COLOR_PAIR(3));
+
+    for (int row = start_row; row < start_row + num_rows; ++row) {
+        for (int col = start_col; col < start_col + num_cols; ++col) {
+            mvwaddch(win, row, col, (row == start_row || row == start_row + num_rows - 1) ? ACS_HLINE : (col == start_col || col == start_col + num_cols - 1) ? ACS_VLINE : ' ');
+        }
+    }
+    wrefresh(win);
+}
+
+void HandleTurns::print_char_by_type(char displayChar, int y, int x) {
+    switch (displayChar) {
+        case 'X':
+            attron(COLOR_PAIR(1));
+            mvprintw(y, x, "%c ", displayChar);
+            attroff(COLOR_PAIR(1));
+            break;
+        case 'o':
+            attron(COLOR_PAIR(2));
+            mvprintw(y, x, "%c ", displayChar);
+            attroff(COLOR_PAIR(2));
+            break;
+        default:
+            mvprintw(y, x, "%c ", displayChar);
+            break;
+    }
+}
+
 
 void HandleTurns::player_management(int argc, char **argv, std::vector<std::string> &myMatrix, std::vector<std::string> &enemyMatrix) {
     while (true) {
@@ -42,7 +75,7 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
 
     while (true) {
         print_boards(myMatrix, enemyMatrix);
-        printw("[ATTACK] (format: A1, B2, etc.) = ");
+        mvprintw(LINES - 2, 0, "[ATTACK] (format: A1, B2, etc.) = ");
         refresh();
         char input[3];
         getnstr(input, 3);
@@ -66,10 +99,10 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
             int row = user_choice[1] - '1';
             int col = 2 * (user_choice[0] - 'A');
             if (response == "1") {
-                printw("%s : hit!\n", user_choice.c_str());
+                mvprintw(LINES - 1, 0, "%s : hit!", user_choice.c_str());
                 enemyMatrix[row][col] = 'X';
             } else if (response == "0") {
-                printw("%s : missed\n", user_choice.c_str());
+                mvprintw(LINES - 1, 0, "%s : missed", user_choice.c_str());
                 enemyMatrix[row][col] = 'o';
             } else {
                 show_error_popup("Invalid response from server.");
@@ -102,48 +135,53 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
         char &cell = myMatrix[row][col];
         if (cell == '.' || cell == 'o') {
             cell = 'o';
-            printw("Miss at %s\n", attack_pos.c_str());
+            mvprintw(LINES - 1, 0, "Miss at %s", attack_pos.c_str());
             net.send_message("0");
         } else {
             cell = 'X';
-            printw("Hit at %s\n", attack_pos.c_str());
+            mvprintw(LINES - 1, 0, "Hit at %s", attack_pos.c_str());
             net.send_message("1");
         }
         print_boards(myMatrix, enemyMatrix);
     }
 }
 
-void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
-    auto print_board = [](const std::vector<std::string> &matrix, const std::string &title) {
-        printw("%s\n", title.c_str());
-        printw(" | A B C D E F G H\n");
-        printw("-+----------------\n");
-        for (int i = 0; i < matrix.size() - 1; ++i) { // Display up to the 9th row only
-            printw("%d|", i + 1);
-            for (int j = 0; j < matrix[i].length(); j += 2) {
-                char displayChar = matrix[i][j];
-                if (displayChar == 'X') {
-                    attron(COLOR_PAIR(1));
-                    printw("%c ", displayChar);
-                    attroff(COLOR_PAIR(1));
-                } else if (displayChar == 'o') {
-                    attron(COLOR_PAIR(2));
-                    printw("%c ", displayChar);
-                    attroff(COLOR_PAIR(2));
-                } else {
-                    printw("%c ", displayChar);
-                }
-            }
-            printw("\n");
-        }
-    };
 
+void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
     clear();
-    print_board(myMatrix, "My Positions:");
-    printw("\n");
-    print_board(enemyMatrix, "Enemy's Positions:");
+    int left_margin = 4;
+    int top_margin = 2;
+    int column_width = 2 * (myMatrix[0].size() + 1);
+
+    // Print the player's board
+    attron(COLOR_PAIR(3));
+    mvprintw(top_margin - 1, left_margin + 5, "A B C D E F G H"); // Adjusted column headers
+    mvprintw(top_margin, left_margin, "My Positions:");
+    draw_borders(stdscr, top_margin + 1, left_margin, 9 + 2, column_width + 4);  // Adjusted for 9 rows
+    for (int i = 0; i < 9; ++i) {  // Adjusted for 9 rows
+        mvprintw(top_margin + 1 + i, left_margin + 2, "%d ", i + 1);
+        for (int j = 0; j < myMatrix[i].length(); j += 2) {
+            print_char_by_type(myMatrix[i][j], top_margin + 1 + i, left_margin + 4 + j);
+        }
+    }
+
+    // Print the enemy's board
+    int enemy_left_margin = left_margin + column_width + 10;
+    mvprintw(top_margin - 1, enemy_left_margin + 5, "A B C D E F G H"); // Adjusted column headers
+    mvprintw(top_margin, enemy_left_margin, "Enemy's Positions:");
+    draw_borders(stdscr, top_margin + 1, enemy_left_margin, 9 + 2, column_width + 4);  // Adjusted for 9 rows
+    for (int i = 0; i < 9; ++i) {  // Adjusted for 9 rows
+        mvprintw(top_margin + 1 + i, enemy_left_margin + 2, "%d ", i + 1);
+        for (int j = 0; j < enemyMatrix[i].length(); j += 2) {
+            print_char_by_type(enemyMatrix[i][j], top_margin + 1 + i, enemy_left_margin + 4 + j);
+        }
+    }
+
+    attroff(COLOR_PAIR(3));
     refresh();
 }
+
+
 
 void HandleTurns::show_error_popup(const std::string &message) {
     int height = 5;
@@ -152,7 +190,9 @@ void HandleTurns::show_error_popup(const std::string &message) {
     int start_x = (COLS - width) / 2;
 
     WINDOW *popup_win = newwin(height, width, start_y, start_x);
+    wattron(popup_win, COLOR_PAIR(4));
     box(popup_win, 0, 0);
+    wattroff(popup_win, COLOR_PAIR(4));
     mvwprintw(popup_win, 2, 2, "%s", message.c_str());
     wrefresh(popup_win);
     wgetch(popup_win); // Wait for user to press a key

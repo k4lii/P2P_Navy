@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/lorris/P2P_Navy/src/Network.cpp" "CMakeFiles/P2P_Navy.dir/src/Network.cpp.o" "gcc" "CMakeFiles/P2P_Navy.dir/src/Network.cpp.o.d"
   "/home/lorris/P2P_Navy/src/VerifyBoatsFile.cpp" "CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o" "gcc" "CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o.d"
   "/home/lorris/P2P_Navy/src/main.cpp" "CMakeFiles/P2P_Navy.dir/src/main.cpp.o" "gcc" "CMakeFiles/P2P_Navy.dir/src/main.cpp.o.d"
+  "/home/lorris/P2P_Navy/src/menu.cpp" "CMakeFiles/P2P_Navy.dir/src/menu.cpp.o" "gcc" "CMakeFiles/P2P_Navy.dir/src/menu.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

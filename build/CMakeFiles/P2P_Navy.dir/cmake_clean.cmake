@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o.d"
   "CMakeFiles/P2P_Navy.dir/src/main.cpp.o"
   "CMakeFiles/P2P_Navy.dir/src/main.cpp.o.d"
+  "CMakeFiles/P2P_Navy.dir/src/menu.cpp.o"
+  "CMakeFiles/P2P_Navy.dir/src/menu.cpp.o.d"
   "P2P_Navy"
   "P2P_Navy.pdb"
 )
