@@ -1,38 +1,26 @@
 #include "Network.hpp"
 #include <iostream>
 
-Network::Network() : socket(io_context), acceptor(io_context) {}
+Network::Network() : socket(io_context), acceptor(nullptr) {}
 
-bool Network::Start(const std::string &port, bool is_server) {
+bool Network::Start(const std::string &port, bool is_server, const std::string &ip) {
     try {
         if (is_server) {
-            tcp::endpoint endpoint(tcp::v4(), std::stoi(port));
-            acceptor.open(endpoint.protocol());
-            acceptor.bind(endpoint);
-            acceptor.listen();
-            std::cout << "Listening on port: " << port << std::endl;
-            acceptor.accept(socket);
+            // Initialize acceptor only for server
+            acceptor.reset(new tcp::acceptor(io_context, tcp::endpoint(tcp::v4(), std::stoi(port))));
+            acceptor->listen();
+            std::cout << "Server listening on port: " << port << std::endl;
+            acceptor->accept(socket);
             std::cout << "Client connected." << std::endl;
         } else {
             tcp::resolver resolver(io_context);
-            auto endpoints = resolver.resolve("127.0.0.1", port);
+            auto endpoints = resolver.resolve(ip, port);
             boost::asio::connect(socket, endpoints);
-            std::cout << "Connected to server." << std::endl;
+            std::cout << "Connected to server at " << ip << ":" << port << std::endl;
         }
         return true;
     } catch (boost::system::system_error &e) {
-        std::cerr << "Boost system error: " << e.what() << std::endl;
-        if (is_server) {
-            std::cerr << "Server failed to bind to port." << std::endl;
-        } else {
-            std::cerr << "Client failed to connect to server." << std::endl;
-        }
-        return false;
-    } catch (std::exception &e) {
-        std::cerr << "Standard exception: " << e.what() << std::endl;
-        return false;
-    } catch (...) {
-        std::cerr << "Unknown error occurred while starting network." << std::endl;
+        std::cerr << "Network error: " << e.what() << " in " << (is_server ? "server" : "client") << " mode." << std::endl;
         return false;
     }
 }
@@ -43,7 +31,7 @@ bool Network::is_connected() const {
 
 void Network::send_message(const std::string &message) {
     if (is_connected()) {
-        boost::asio::write(socket, boost::asio::buffer(message + "\n"));
+        boost::asio::write(socket, boost::asio::buffer(message + "\n")); // Ensure each message ends with a newline for proper parsing.
     } else {
         std::cerr << "No connection available to send message" << std::endl;
     }
@@ -52,13 +40,13 @@ void Network::send_message(const std::string &message) {
 std::string Network::receive_message() {
     if (is_connected()) {
         boost::asio::streambuf buf;
-        boost::asio::read_until(socket, buf, "\n");
+        boost::asio::read_until(socket, buf, "\n"); // Read until newline character.
         std::istream input(&buf);
         std::string message;
         std::getline(input, message);
         return message;
     } else {
         std::cerr << "No connection available to receive message" << std::endl;
-        return "";
+        return "error"; // Returning explicit "error" can help identify issues.
     }
 }

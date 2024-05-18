@@ -1,144 +1,140 @@
 #include "VerifyBoatsFile.hpp"
+#include <iostream>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+#include <cstdlib>
 
-VerifyBoatsFile::VerifyBoatsFile(){}
-VerifyBoatsFile::~VerifyBoatsFile(){}
+VerifyBoatsFile::VerifyBoatsFile() {}
+VerifyBoatsFile::~VerifyBoatsFile() {}
 
-int VerifyBoatsFile::nb_col(char *av)
-{
-    int li = 0;
-    int fd;
+int VerifyBoatsFile::nb_col(const char *filename) {
+    int lines = 0;
+    int fd = open(filename, O_RDONLY);
     char buf[1];
 
-    fd = open(av, O_RDONLY);
-    for (int i = 0; read(fd, buf, 1) != 0; i++) {
+    if (fd == -1) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    while (read(fd, buf, 1)) {
         if (buf[0] == '\n')
-            li++;
+            lines++;
     }
-    li++;
     close(fd);
-    return (li);
+    return lines + 1;
 }
 
-int VerifyBoatsFile::nb_lines(char *av)
-{
-    int co_size = 1;
-    int co_save = 0;
-    int fd;
+int VerifyBoatsFile::nb_lines(const char *filename) {
+    int max_col_size = 1;
+    int current_col_size = 0;
+    int fd = open(filename, O_RDONLY);
     char buf[1];
 
-    fd = open(av, O_RDONLY);
-    for (int i = 0; read(fd, buf, 1) != 0; i++) {
-        co_size++;
+    if (fd == -1) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    while (read(fd, buf, 1)) {
+        current_col_size++;
         if (buf[0] == '\n') {
-            co_size ++;
-            if(co_size > co_save)
-                co_save = co_size;
-            co_size = 0;
+            if (current_col_size > max_col_size)
+                max_col_size = current_col_size;
+            current_col_size = 0;
         }
     }
     close(fd);
-    return (co_save);
+    return max_col_size + 1;
 }
 
-char** VerifyBoatsFile::map_in_str(char *av)
-{
-    int li = nb_lines(av);
-    int size_co = nb_col(av);
-    int c = 0;
-    char **lettre = (char **)malloc(sizeof(char *) * li + 1);
-    int fd = open(av, O_RDONLY);
+char** VerifyBoatsFile::map_in_str(const char *filename) {
+    int rows = nb_lines(filename);
+    int cols = nb_col(filename);
+    char **letters = (char **)malloc(sizeof(char *) * (rows + 1));
+    int fd = open(filename, O_RDONLY);
     char buf[1];
 
-    for (int l = 0; l < li; l++)
-        lettre[l] = (char *)malloc(sizeof(char) * size_co + 1);
-    for (int l = 0; read(fd, buf, 1) != 0; c++) {
-        lettre[l][c] = buf[0];
-        if (lettre[l][c] == '\n') {
-            c = -1;
-            l++;
+    if (fd == -1) {
+        perror("Error opening file");
+        return nullptr;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        letters[i] = (char *)malloc(sizeof(char) * (cols + 1));
+    }
+
+    int row = 0;
+    int col = 0;
+    while (read(fd, buf, 1)) {
+        letters[row][col++] = buf[0];
+        if (buf[0] == '\n') {
+            letters[row][col] = '\0';
+            row++;
+            col = 0;
         }
     }
     close(fd);
-    return (lettre); 
+    return letters;
 }
 
-int VerifyBoatsFile::verify_rooms(char **pos_file)
-{
-    int nb = 0;
+int VerifyBoatsFile::verify_rooms(char **pos_file) {
+    int total_rooms = 0;
 
-    for (int y = 0; y != 4; y++) {
-        if (pos_file[y][0] == '2')
-            nb += 2;
-        if (pos_file[y][0] == '3')
-            nb += 3;
-        if (pos_file[y][0] == '4')
-            nb += 4;
-        if (pos_file[y][0] == '4')
-            nb += 5;
+    for (int i = 0; i < 4; i++) {
+        switch (pos_file[i][0]) {
+            case '2': total_rooms += 2; break;
+            case '3': total_rooms += 3; break;
+            case '4': total_rooms += 4; break;
+            case '5': total_rooms += 5; break;
+            default: return 84;
+        }
     }
-    if (nb < 14 || nb > 14)
-        return (84);
-    else if (nb == 14)
-        return (0);
-    return(0);
+
+    return (total_rooms == 14) ? 0 : 84;
 }
 
-int VerifyBoatsFile::verify_boat_order(char **pos_file)
-{
-    for (int y = 0; y != 4; y++) {
-        if (pos_file[y][2] > pos_file[y][5])
-            return (84);
-        if (pos_file[y][3] > pos_file[y][6])
-            return (84);
+int VerifyBoatsFile::verify_boat_order(char **pos_file) {
+    for (int i = 0; i < 4; i++) {
+        if (pos_file[i][2] > pos_file[i][5] || pos_file[i][3] > pos_file[i][6])
+            return 84;
     }
-    return(0);
+    return 0;
 }
 
-int VerifyBoatsFile::verify_lenght(char **pos_file)
-{
-    for (int y = 0; y != 4; y++) {
-        if (strlen(pos_file[y]) > 8 || strlen(pos_file[y]) < 6)
-            return (84);
+int VerifyBoatsFile::verify_length(char **pos_file) { // Corrected function name
+    for (int i = 0; i < 4; i++) {
+        if (strlen(pos_file[i]) < 6 || strlen(pos_file[i]) > 8)
+            return 84;
     }
-    return (0);
+    return 0;
 }
 
-int VerifyBoatsFile::verify_x_y(char **pos_file)
-{
-    int nb = 0;
+int VerifyBoatsFile::verify_x_y(char **pos_file) {
+    int valid_count = 0;
 
-    for (int y = 0; y != 4; y++) {
-        if (pos_file[y][2] >= 'A' && pos_file[y][2] <= 'H')
-            nb++;
-        if (pos_file[y][3] >= '1' && pos_file[y][3] <= '8')
-            nb++;
-        if (pos_file[y][5] >= 'A' && pos_file[y][5] <= 'H')
-            nb++;
-        if (pos_file[y][6] >= '1' && pos_file[y][6] <= '8')
-            nb++;
+    for (int i = 0; i < 4; i++) {
+        if (pos_file[i][2] >= 'A' && pos_file[i][2] <= 'H') valid_count++;
+        if (pos_file[i][3] >= '1' && pos_file[i][3] <= '8') valid_count++;
+        if (pos_file[i][5] >= 'A' && pos_file[i][5] <= 'H') valid_count++;
+        if (pos_file[i][6] >= '1' && pos_file[i][6] <= '8') valid_count++;
     }
-    if (nb > 16 || nb < 16)
-        return (84);
-    else if (nb == 16)
-        return (0);
-    return(0);
+
+    return (valid_count == 16) ? 0 : 84;
 }
 
-int VerifyBoatsFile::verify_boats_file(char **argv, int argc) //generer des positions aleatoire
-{
-    if (argc == 2 || argc == 3) { //improve error gestion
-      //  printf("%s\n", argv[0]); //prog name
-       // printf("%s\n", argv[1]);
-       // exit(0);
+int VerifyBoatsFile::verify_boats_file(char **argv, int argc) {
+    if (argc == 2 || argc == 3) {
         char **pos_file = map_in_str(argv[1]);
-        if (verify_rooms(pos_file) == 84)
-            return (84);
-        if (verify_lenght(pos_file) == 84)
-            return (84);
-        if (verify_x_y(pos_file) == 84)
-            return (84);
-        if (verify_boat_order(pos_file) == 84)
-            return (84);
+        if (!pos_file) return 84;
+
+        if (verify_rooms(pos_file) == 84 ||
+            verify_length(pos_file) == 84 || // Corrected function call
+            verify_x_y(pos_file) == 84 ||
+            verify_boat_order(pos_file) == 84) {
+            return 84;
+        }
     }
-    return (0);
+    return 0;
 }
