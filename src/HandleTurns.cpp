@@ -118,7 +118,7 @@ void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const s
         printw("%s\n", title.c_str());
         printw(" | A B C D E F G H\n");
         printw("-+----------------\n");
-        for (int i = 0; i < 9; ++i) { // Display up to the 9th row only
+        for (int i = 0; i < matrix.size() - 1; ++i) { // Display up to the 9th row only
             printw("%d|", i + 1);
             for (int j = 0; j < matrix[i].length(); j += 2) {
                 char displayChar = matrix[i][j];
