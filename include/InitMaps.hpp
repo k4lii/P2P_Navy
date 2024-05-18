@@ -1,32 +1,22 @@
-#pragma once
-#include <string.h>
-#include <iostream>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#ifndef INITMAPS_HPP
+#define INITMAPS_HPP
 
 #include <vector>
+#include <string>
+#include "types.hpp"
 
-typedef struct matrix {
-    std::vector<std::string> map;
-    std::vector<std::string> enemy_map;
-} t_matrix;
-
-#define FILE_LEN 33
-#define LINE_LEN 7
-
-class InitMaps
-{
-    public:
-        InitMaps();
-        ~InitMaps();
-        int is_boat(int x, int y, std::vector<std::string> map);
-        t_matrix init_matrix(char *path);
-    private:
-        void draw_boat(char *line_buffer, std::vector<std::string> &map);
-        int init_boat(char *filepath, std::vector<std::string> &map);
-        int get_x(char c, std::vector<std::string> map);
-        int get_y(char c, std::vector<std::string> map);
-        void fill_navy_str(std::vector<std::string> &map);
-        char **create_2d_str(int x_size, int y_size);
+class InitMaps {
+public:
+    InitMaps();
+    ~InitMaps();
+    
+    int is_boat(int x, int y, t_matrix map);
+    void fill_navy_str(t_matrix &map);
+    int init_boat(char *filepath, t_matrix &map);
+    void draw_boat(char *line_buffer, t_matrix &map);
+    t_matrix init_matrix(char *path);
+    int get_x(char c, t_matrix map);
+    int get_y(char c, t_matrix map);
 };
+
+#endif // INITMAPS_HPP

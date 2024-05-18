@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/lorris/P2P_Navy/include -isystem /home/lorris/.conan2/p/b/boostbe33b38f17c26/p/include -isystem /home/lorris/.conan2/p/b/libbaedcc1cf3e2fe1/p/include
+CXX_INCLUDES = -I/home/lorris/P2P_Navy/include -I/home/lorris/.conan2/p/b/boostbe33b38f17c26/p/include
 
-CXX_FLAGS = -m64 -O3 -DNDEBUG -std=gnu++17
+CXX_FLAGS = -m64 -g -std=gnu++17
 

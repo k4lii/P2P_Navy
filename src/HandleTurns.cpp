@@ -1,149 +1,85 @@
 #include "HandleTurns.hpp"
+#include <iostream>
 
-HandleTurns::HandleTurns(){}
-HandleTurns::~HandleTurns(){}
-
-int HandleTurns::verify_user_choice_error(std::string choice)
-{
-    if (choice.size() > 2 ) {
-        std::cout << "forbidden position" << std::endl;
-        return (0);
-    }
-    if (choice.at(1) < '1' || choice.at(1) > '8') {
-        std::cout << "forbidden position" << std::endl;
-        return (0);
-    }
-    if (choice.at(0) < 'A' || choice.at(0) > 'H') {
-        std::cout << "forbidden position" << std::endl;
-        return (0);
-    }
-    return (1);
+HandleTurns::HandleTurns(bool is_server, Network &net) : is_server(is_server), net(net) {
+    std::cout << "HandleTurns initialized. Is server: " << std::boolalpha << is_server << std::endl;
 }
 
-std::string HandleTurns::user_entry_attack()
-{
+HandleTurns::~HandleTurns() {
+    std::cout << "HandleTurns destroyed" << std::endl;
+}
+
+void HandleTurns::player_management(int argc, char **argv, std::vector<std::string> &matrix) {
+    std::cout << "Player management started" << std::endl;
+    if (is_server) {
+        defense(matrix, argv);
+    } else {
+        attack(matrix, argv);
+    }
+    std::cout << "Player management ended" << std::endl;
+}
+
+void HandleTurns::attack(std::vector<std::string> &matrix, char **argv) {
     std::string user_choice;
-    do {
-        user_choice.clear();
-        std::cout << "[ATTACK]=";
+    while (true) {
+        std::cout << "[ATTACK] (format: A1, B2, etc.) =";
         std::cin >> user_choice;
-        } while (verify_user_choice_error(user_choice) != 1);
-    return(user_choice);
+        if (net.is_connected()) {
+            net.send_message(user_choice);
+        } else {
+            std::cerr << "No connection available to send message" << std::endl;
+        }
+
+        std::string receive;
+        if (net.is_connected()) {
+            receive = net.receive_message();
+        } else {
+            std::cerr << "No connection available to receive message" << std::endl;
+        }
+
+        if (receive == "1") {
+            std::cout << user_choice << " : hit!" << std::endl;
+        } else if (receive == "0") {
+            std::cout << user_choice << " : missed" << std::endl;
+        } else {
+            std::cerr << "Invalid response" << std::endl;
+        }
+    }
 }
 
-t_pos HandleTurns::data_to_position(std::string data, std::vector<std::string> map)
-{
-    t_pos pos = {0,0,0};
+void HandleTurns::defense(std::vector<std::string> &matrix, char **argv) {
+    std::string receive;
+    while (true) {
+        if (net.is_connected()) {
+            receive = net.receive_message();
+        } else {
+            std::cerr << "No connection available to receive message" << std::endl;
+        }
 
-    for(long unsigned int x = 2; x != map[0].size(); x++) {
-        if(map[0].at(x) == data.at(0)) {
-            pos.x = x;
-            for(long unsigned int y = 2; y != map.size(); y++) {
-                if(map[y].at(0) == data.at(1)){
-                    pos.y = y;
-                    pos.status = 1;
-                }
+        if (receive.empty()) {
+            continue;
+        }
+
+        int row = receive[1] - '1';
+        int col = receive[0] - 'A';
+        if (matrix[row][col] == '.') {
+            matrix[row][col] = '0';
+            std::cout << "Miss!" << std::endl;
+            if (net.is_connected()) {
+                net.send_message("0");
+            } else {
+                std::cerr << "No connection available to send message" << std::endl;
             }
+        } else if (matrix[row][col] >= '1' && matrix[row][col] <= '9') {
+            matrix[row][col] = 'X';
+            std::cout << "Hit!" << std::endl;
+            if (net.is_connected()) {
+                net.send_message("1");
+            } else {
+                std::cerr << "No connection available to send message" << std::endl;
+            }
+        } else {
+            std::cerr << "Invalid position" << std::endl;
         }
-    }
-    return (pos);
-}
-
-void HandleTurns::attack(std::vector<std::string> &enemy_map, char **argv)
-{
-    std::string receive;
-    std::string user_choice;
-    std::string ip(argv[3]);
-
-    user_choice = user_entry_attack(); //std::cin and verify if positions are corrects
-    t_pos pos = data_to_position(user_choice, enemy_map);// get posx and poxy from user choice
-    usleep(100000); //wait to let initialize server/client
-    this->net.Send(user_choice, ip, atoi(argv[2])); //send to server
-    usleep(100000);
-    receive = this->net.Receive(atoi(argv[2])); //receive data -> receive if attack hit or not 1 or 0
-    if (receive == "1") {
-        std::cout << "hit" << std::endl;
-        enemy_map[pos.y].at(pos.x) = 'x';
-    } else if (receive == "0") {
-        std::cout << user_choice << " : missed" << std::endl;
-        enemy_map[pos.y].at(pos.x) = 'o';
-    }
-}
-
-void HandleTurns::defense(std::vector<std::string> &map, char **argv)
-{
-    std::string receive;
-    std::string ip(argv[3]);
-    
-    std::cout << "waiting for enemy's attack..." << std::endl;
-    receive = this->net.Receive(atoi(argv[2]));
-    usleep(100000);
-
-    t_pos pos = data_to_position(receive, map);//get receive posx and posy
-    if (this->map.is_boat(pos.x, pos.y, map) == 1) {
-        usleep(10000);
-        net.Send("1", ip, atoi(argv[2]));
-        std::cout << receive << " : hit" << std::endl;
-        map[pos.y].at(pos.x) = 'x';
-    } else if (this->map.is_boat(pos.x, pos.y, map) == 0) {
-        usleep(10000);
-        net.Send("0", ip, atoi(argv[2]));
-        std::cout << receive << " : missed" << std::endl;
-        map[pos.y].at(pos.x) = 'o';
-    }
-}
-
-int HandleTurns::win_lose(t_matrix matrix)
-{
-    int nb_map = 0;
-    int nb_enemy_map = 0;
-
-    for (int y = 2; y != 10; y++) {
-        for (int x = 2; x != 17; x++) {
-            if (matrix.map[y].at(x) == 'x')
-                nb_map += 1;
-            if (matrix.enemy_map[y].at(x) == 'x')
-                nb_enemy_map += 1;
-        }
-    }
-    if (nb_map == 14) {
-        std::cout << "Enemy win" << std::endl;
-        return(1);
-    }
-    if (nb_enemy_map == 14) {
-        std::cout << "You win" << std::endl;
-        return(1);
-    }
-    return 0;
-}
-
-int HandleTurns::player_managment(int argc, char **argv, t_matrix matrix)
-{
-    //verifier si la connexion est bien etablie
-    print_navy(matrix);
-    while (1) {
-        if(argc == 5){ // if player 1 -> attack
-            attack(matrix.enemy_map, argv);
-            defense(matrix.map, argv);
-        } else if (argc == 4) { // if player 2 -> defense
-            defense(matrix.map, argv);
-            attack(matrix.enemy_map, argv);
-        }
-        if(win_lose(matrix) == 1)
-            return 0;
-        print_navy(matrix);
-    }
-    return 0;
-}
-
-void HandleTurns::print_navy(t_matrix matrix)
-{
-    std::cout << "\nmy positions:\n" << std::endl;
-    for (long unsigned int y = 0; y != matrix.map.size() ; y++){
-        std::cout << matrix.map[y] << std::endl;
-    }
-    std::cout << "\nenemy's positions:\n" << std::endl;
-    for (long unsigned int y = 0; y != matrix.enemy_map.size() ; y++){
-        std::cout << matrix.enemy_map[y] << std::endl;
     }
 }

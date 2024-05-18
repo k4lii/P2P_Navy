@@ -1,23 +1,26 @@
-/*
-** EPITECH PROJECT, 2019
-** PSU_navy_2018
-** File description:
-** init_matrix
-*/
-
 #include "InitMaps.hpp"
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <unistd.h>
+#include <fcntl.h>
+#include <cstdlib>
 
-InitMaps::InitMaps(){}
-InitMaps::~InitMaps(){}
+#define FILE_LEN 1024
+#define LINE_LEN 256
 
-int InitMaps::is_boat(int x, int y, std::vector<std::string> map)
+InitMaps::InitMaps() {}
+
+InitMaps::~InitMaps() {}
+
+int InitMaps::is_boat(int x, int y, t_matrix map)
 {
     if ((map[y].at(x) >= '1' && map[y].at(x) <= '8') || (map[y].at(x) == 'x'))
-        return (1);
-    return (0);
+        return 1;
+    return 0;
 }
 
-void InitMaps::fill_navy_str(std::vector<std::string> &map)
+void InitMaps::fill_navy_str(t_matrix &map)
 {
     int var = 0;
 
@@ -30,7 +33,7 @@ void InitMaps::fill_navy_str(std::vector<std::string> &map)
         }
     }
     map[0].at(0) = ' ';
-    map[0].at(0) = '|';
+    map[0].at(1) = '|';
     for (int y = 2; y != 18; y++) {
         map[0].at(y) = 65 + var;
         y++;
@@ -52,32 +55,45 @@ void InitMaps::fill_navy_str(std::vector<std::string> &map)
         map[x].pop_back();
 }
 
-int InitMaps::init_boat(char *filepath, std::vector<std::string> &map)
+int InitMaps::init_boat(char *filepath, t_matrix &map)
 {
-    
     int fd = open(filepath, O_RDONLY);
-    char *file_buffer = (char *) malloc(sizeof(char) * FILE_LEN);
-    char *line_buffer = (char *) malloc(sizeof(char) * LINE_LEN);
+    if (fd == -1) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    char *file_buffer = (char *)malloc(sizeof(char) * FILE_LEN);
+    char *line_buffer = (char *)malloc(sizeof(char) * LINE_LEN);
     int line_buffer_i = 0;
 
-    read(fd, file_buffer, FILE_LEN);
+    ssize_t bytes_read = read(fd, file_buffer, FILE_LEN); // Capture the return value
+    if (bytes_read < 0) {
+        perror("Error reading file");
+        close(fd);
+        free(file_buffer);
+        free(line_buffer);
+        return -1;
+    }
     close(fd);
-    for (int i = 0; file_buffer[i]; i++) {
+
+    for (int i = 0; i < bytes_read; i++) {
         if (file_buffer[i] == '\n') {
+            line_buffer[line_buffer_i] = '\0'; // Ensure null termination
             line_buffer_i = 0;
-            // std::cout << file_buffer[i] << std::endl;
             draw_boat(line_buffer, map);
             continue;
         }
         line_buffer[line_buffer_i] = file_buffer[i];
         line_buffer_i++;
     }
-    // std::cout << "after fd " << std::endl;
     draw_boat(line_buffer, map);
-    return (0);
+    free(file_buffer);
+    free(line_buffer);
+    return 0;
 }
 
-void InitMaps::draw_boat(char *line_buffer, std::vector<std::string> &map)
+void InitMaps::draw_boat(char *line_buffer, t_matrix &map)
 {
     int x1 = get_x(line_buffer[2], map);
     int y1 = get_y(line_buffer[3], map);
@@ -87,8 +103,7 @@ void InitMaps::draw_boat(char *line_buffer, std::vector<std::string> &map)
     if (x1 == x2) {
         for (; y1 < y2; y1++)
             map[y1][x1] = line_buffer[0];
-    }
-    else if (y1 == y2) {
+    } else if (y1 == y2) {
         for (; x1 < x2; x1++) {
             if (x1 % 2 == 0)
                 map[y1][x1] = line_buffer[0];
@@ -100,30 +115,32 @@ void InitMaps::draw_boat(char *line_buffer, std::vector<std::string> &map)
 t_matrix InitMaps::init_matrix(char *path)
 {
     t_matrix matrix;
-    for (int x = 0; x != 10; x++) {
-        matrix.map.push_back("..................");
-        matrix.enemy_map.push_back("..................");
+    std::ifstream file(path);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << path << std::endl;
+        return matrix;
     }
-    fill_navy_str(matrix.map);
-    fill_navy_str(matrix.enemy_map);
-    init_boat(path, matrix.map);
-    return (matrix);
+    std::string line;
+    while (std::getline(file, line)) {
+        matrix.push_back(line);
+    }
+    return matrix;
 }
 
-int InitMaps::get_x(char c, std::vector<std::string> map)
+int InitMaps::get_x(char c, t_matrix map)
 {
     for (int i = 0; i < 18; i++) {
         if (map[0][i] == c)
-            return (i);
+            return i;
     }
     return -1;
 }
 
-int InitMaps::get_y(char c, std::vector<std::string> map)
+int InitMaps::get_y(char c, t_matrix map)
 {
     for (int i = 0; i < 10; i++) {
         if (map[i][0] == c)
-            return (i);
+            return i;
     }
     return -1;
 }

@@ -1,33 +1,23 @@
-#pragma once
-#include <string.h>
-#include <iostream>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#ifndef HANDLETURNS_HPP
+#define HANDLETURNS_HPP
 
+#include <vector>
+#include <string>
 #include "Network.hpp"
-#include "InitMaps.hpp"
 
-typedef struct pos {
-    int status;
-    int x;
-    int y;
-} t_pos;
+class HandleTurns {
+public:
+    HandleTurns(bool is_server, Network &net);
+    ~HandleTurns();
 
-class HandleTurns
-{
-    public:
-        HandleTurns();
-        ~HandleTurns();
-        int player_managment(int argc, char **argv, t_matrix matrix);
-    private:
-        Network net;
-        InitMaps map;
-        t_pos data_to_position(std::string data, std::vector<std::string> map);
-        void print_navy(t_matrix matrix);
-        int win_lose(t_matrix matrix);
-        void defense(std::vector<std::string> &map, char **argv);
-        void attack(std::vector<std::string> &enemy_map, char **argv);
-        std::string user_entry_attack();
-        int verify_user_choice_error(std::string choice);
+    void player_management(int argc, char **argv, std::vector<std::string> &matrix);
+
+private:
+    void attack(std::vector<std::string> &matrix, char **argv);
+    void defense(std::vector<std::string> &matrix, char **argv);
+
+    bool is_server;
+    Network &net;
 };
+
+#endif // HANDLETURNS_HPP
