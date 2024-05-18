@@ -12,15 +12,17 @@ find_package(Boost REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(BZip2 REQUIRED)
 find_package(libbacktrace REQUIRED)  # Confirm the package name
+find_package(Curses REQUIRED)        # Add this line to find ncurses
 
-# Include Boost directories
+# Include Boost and Curses directories
 include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${CURSES_INCLUDE_DIRS})
 
 # Add your executable
 add_executable(P2P_Navy src/main.cpp src/HandleTurns.cpp src/InitMaps.cpp src/Network.cpp src/VerifyBoatsFile.cpp)
 
 # Link libraries
-target_link_libraries(P2P_Navy PRIVATE Boost::boost ZLIB::ZLIB BZip2::BZip2 libbacktrace::libbacktrace)
+target_link_libraries(P2P_Navy PRIVATE Boost::boost ZLIB::ZLIB BZip2::BZip2 libbacktrace::libbacktrace ${CURSES_LIBRARIES})
 
 # Set the build type to Debug to include debug symbols
 set(CMAKE_BUILD_TYPE Debug)

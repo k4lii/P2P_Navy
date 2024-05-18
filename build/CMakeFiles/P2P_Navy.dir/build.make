@@ -156,6 +156,8 @@ P2P_Navy: CMakeFiles/P2P_Navy.dir/src/InitMaps.cpp.o
 P2P_Navy: CMakeFiles/P2P_Navy.dir/src/Network.cpp.o
 P2P_Navy: CMakeFiles/P2P_Navy.dir/src/VerifyBoatsFile.cpp.o
 P2P_Navy: CMakeFiles/P2P_Navy.dir/build.make
+P2P_Navy: /usr/lib/x86_64-linux-gnu/libcurses.so
+P2P_Navy: /usr/lib/x86_64-linux-gnu/libform.so
 P2P_Navy: CMakeFiles/P2P_Navy.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/lorris/P2P_Navy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable P2P_Navy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/P2P_Navy.dir/link.txt --verbose=$(VERBOSE)

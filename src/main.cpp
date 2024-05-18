@@ -3,6 +3,7 @@
 #include "Network.hpp"
 #include "VerifyBoatsFile.hpp"
 #include <iostream>
+#include <ncurses.h>
 
 int main(int argc, char** argv) {
     if (argc != 5) {

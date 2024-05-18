@@ -5,43 +5,56 @@
 
 HandleTurns::HandleTurns(bool is_server, Network &net)
     : is_server(is_server), net(net), is_my_turn(is_server) {
-    std::cout << "HandleTurns initialized. Is server: " << std::boolalpha << is_server << std::endl;
+    initscr();             // Start ncurses mode
+    cbreak();              // Disable line buffering
+    keypad(stdscr, TRUE);  // Enable F1, F2 etc.
+    echo();                // Enable echoing of typed characters
+    curs_set(0);           // Hide the cursor
+    start_color();         // Start color functionality
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_BLUE, COLOR_BLACK);
+
+    printw("HandleTurns initialized. Is server: %s\n", is_server ? "true" : "false");
+    refresh();
 }
 
 HandleTurns::~HandleTurns() {
+    endwin();  // End ncurses mode
     std::cout << "HandleTurns destroyed" << std::endl;
 }
 
 void HandleTurns::player_management(int argc, char **argv, std::vector<std::string> &myMatrix, std::vector<std::string> &enemyMatrix) {
-    std::cout << "Player management started" << std::endl;
     while (true) {
         if (is_my_turn) {
             attack(myMatrix, enemyMatrix, argv);
         } else {
-            std::cout << "Waiting for enemy's attack..." << std::endl;
+            printw("Waiting for enemy's attack...\n");
+            refresh();
             defense(myMatrix, enemyMatrix, argv);
         }
         is_my_turn = !is_my_turn;
     }
-    std::cout << "Player management ended" << std::endl;
 }
 
 void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::string> &enemyMatrix, char **argv) {
     std::string user_choice;
-    std::regex position_regex("^[A-H][1-8]$"); // Valid input format
+    std::regex position_regex("^[A-H][1-9]$");
 
     while (true) {
         print_boards(myMatrix, enemyMatrix);
-        std::cout << "[ATTACK] (format: A1, B2, etc.) = ";
-        std::cin >> user_choice;
+        printw("[ATTACK] (format: A1, B2, etc.) = ");
+        refresh();
+        char input[3];
+        getnstr(input, 3);
+        user_choice = input;
 
         if (!std::regex_match(user_choice, position_regex)) {
-            std::cerr << "Invalid input. Please enter a valid position (e.g., A1, B2, etc.)." << std::endl;
+            show_error_popup("Invalid input. Please enter a valid position (e.g., A1, B2, etc.).");
             continue;
         }
 
         if (!net.is_connected()) {
-            std::cerr << "No connection available to send message" << std::endl;
+            show_error_popup("No connection available to send message.");
             is_my_turn = true;
             return;
         }
@@ -53,17 +66,17 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
             int row = user_choice[1] - '1';
             int col = 2 * (user_choice[0] - 'A');
             if (response == "1") {
-                std::cout << user_choice << " : hit!" << std::endl;
+                printw("%s : hit!\n", user_choice.c_str());
                 enemyMatrix[row][col] = 'X';
             } else if (response == "0") {
-                std::cout << user_choice << " : missed" << std::endl;
+                printw("%s : missed\n", user_choice.c_str());
                 enemyMatrix[row][col] = 'o';
             } else {
-                std::cerr << "Invalid response from server" << std::endl;
+                show_error_popup("Invalid response from server.");
             }
-            break;  // Correct placement of break
+            break;
         } else {
-            std::cerr << "No connection available to receive message" << std::endl;
+            show_error_popup("No connection available to receive message.");
             is_my_turn = true;
             return;
         }
@@ -72,7 +85,7 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
 
 void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::string> &enemyMatrix, char **argv) {
     if (!net.is_connected()) {
-        std::cerr << "No connection available to receive message" << std::endl;
+        show_error_popup("No connection available to receive message.");
         return;
     }
 
@@ -82,18 +95,18 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
         int col = 2 * (attack_pos[0] - 'A');
         if (row < 0 || row >= myMatrix.size() || col < 0 || col >= myMatrix[0].size()) {
             net.send_message("error");
-            std::cerr << "Invalid position at " << attack_pos << std::endl;
+            show_error_popup("Invalid position at " + attack_pos);
             return;
         }
 
         char &cell = myMatrix[row][col];
         if (cell == '.' || cell == 'o') {
             cell = 'o';
-            std::cout << "Miss at " << attack_pos << std::endl;
+            printw("Miss at %s\n", attack_pos.c_str());
             net.send_message("0");
         } else {
             cell = 'X';
-            std::cout << "Hit at " << attack_pos << std::endl;
+            printw("Hit at %s\n", attack_pos.c_str());
             net.send_message("1");
         }
         print_boards(myMatrix, enemyMatrix);
@@ -102,34 +115,46 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
 
 void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
     auto print_board = [](const std::vector<std::string> &matrix, const std::string &title) {
-        std::cout << title << std::endl;
-        std::cout << " | A B C D E F G H" << std::endl;  // Headers for columns
-        std::cout << "-+----------------" << std::endl;
-        for (int i = 0; i < matrix.size(); ++i) {
-            std::cout << i + 1 << (i < 9 ? " " : ""); // Adjust space for single digit
-            std::cout << "|";
-            for (int j = 0; j < matrix[i].length(); ++j) {
-                if (j % 2 != 0) continue; // Skipping spaces between columns
-
+        printw("%s\n", title.c_str());
+        printw(" | A B C D E F G H\n");
+        printw("-+----------------\n");
+        for (int i = 0; i < 9; ++i) { // Display up to the 9th row only
+            printw("%d|", i + 1);
+            for (int j = 0; j < matrix[i].length(); j += 2) {
                 char displayChar = matrix[i][j];
-                switch (displayChar) {
-                    case 'X':
-                        std::cout << RED << displayChar << RESET;
-                        break;
-                    case 'o':
-                        std::cout << BLUE << displayChar << RESET;
-                        break;
-                    default:
-                        std::cout << displayChar;
-                        break;
+                if (displayChar == 'X') {
+                    attron(COLOR_PAIR(1));
+                    printw("%c ", displayChar);
+                    attroff(COLOR_PAIR(1));
+                } else if (displayChar == 'o') {
+                    attron(COLOR_PAIR(2));
+                    printw("%c ", displayChar);
+                    attroff(COLOR_PAIR(2));
+                } else {
+                    printw("%c ", displayChar);
                 }
-                std::cout << " "; // Ensuring a space after each character for consistent spacing
             }
-            std::cout << std::endl;
+            printw("\n");
         }
     };
 
+    clear();
     print_board(myMatrix, "My Positions:");
-    std::cout << std::endl;
+    printw("\n");
     print_board(enemyMatrix, "Enemy's Positions:");
+    refresh();
+}
+
+void HandleTurns::show_error_popup(const std::string &message) {
+    int height = 5;
+    int width = message.length() + 4;
+    int start_y = (LINES - height) / 2;
+    int start_x = (COLS - width) / 2;
+
+    WINDOW *popup_win = newwin(height, width, start_y, start_x);
+    box(popup_win, 0, 0);
+    mvwprintw(popup_win, 2, 2, "%s", message.c_str());
+    wrefresh(popup_win);
+    wgetch(popup_win); // Wait for user to press a key
+    delwin(popup_win);
 }
