@@ -47,7 +47,6 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
         }
 
         net.send_message(user_choice);
-
         std::string response;
         if (net.is_connected()) {
             response = net.receive_message();
@@ -56,14 +55,13 @@ void HandleTurns::attack(std::vector<std::string> &myMatrix, std::vector<std::st
             if (response == "1") {
                 std::cout << user_choice << " : hit!" << std::endl;
                 enemyMatrix[row][col] = 'X';
-                break;
             } else if (response == "0") {
                 std::cout << user_choice << " : missed" << std::endl;
                 enemyMatrix[row][col] = 'o';
-                break;
             } else {
                 std::cerr << "Invalid response from server" << std::endl;
             }
+            break;  // Correct placement of break
         } else {
             std::cerr << "No connection available to receive message" << std::endl;
             is_my_turn = true;
@@ -109,15 +107,24 @@ void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const s
         std::cout << "-+----------------" << std::endl;
         for (int i = 0; i < matrix.size(); ++i) {
             std::cout << i + 1;
-            if (i < 9) std::cout << " ";  // Ensure alignment for single digit row numbers
+            if (i < 9) std::cout << " ";  // Assure l'alignement pour les numéros de ligne à un chiffre
             std::cout << "|";
-            for (char cell : matrix[i]) {
-                if (cell == 'X')
-                    std::cout << " " << RED << cell << RESET;
-                else if (cell == 'o')
-                    std::cout << " " << BLUE << cell << RESET;
-                else
-                    std::cout << " " << cell;
+            for (int j = 0; j < matrix[i].length(); ++j) {
+                // Évitez de traiter les espaces comme des indices de grille valides
+                if (j % 2 != 0) continue; // Cette ligne assure que nous sautons les espaces entre les colonnes
+
+                char displayChar = matrix[i][j];
+                switch (displayChar) {
+                    case 'X':
+                        std::cout << RED << displayChar << RESET << " ";
+                        break;
+                    case 'o':
+                        std::cout << BLUE << displayChar << RESET << " ";
+                        break;
+                    default:
+                        std::cout << displayChar << " ";
+                        break;
+                }
             }
             std::cout << std::endl;
         }
