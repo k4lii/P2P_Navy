@@ -103,8 +103,8 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
 void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
     auto print_board = [](const std::vector<std::string> &matrix, const std::string &title) {
         std::cout << title << std::endl;
-        std::cout << "  | A B C D E F G H" << std::endl;  // Headers for columns
-        std::cout << "--+----------------" << std::endl;
+        std::cout << " | A B C D E F G H" << std::endl;  // Headers for columns
+        std::cout << "-+----------------" << std::endl;
         for (int i = 0; i < matrix.size(); ++i) {
             std::cout << i + 1 << (i < 9 ? " " : ""); // Adjust space for single digit
             std::cout << "|";
@@ -114,15 +114,16 @@ void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const s
                 char displayChar = matrix[i][j];
                 switch (displayChar) {
                     case 'X':
-                        std::cout << RED << displayChar << RESET << " ";
+                        std::cout << RED << displayChar << RESET;
                         break;
                     case 'o':
-                        std::cout << BLUE << displayChar << RESET << " ";
+                        std::cout << BLUE << displayChar << RESET;
                         break;
                     default:
-                        std::cout << displayChar << " ";
+                        std::cout << displayChar;
                         break;
                 }
+                std::cout << " "; // Ensuring a space after each character for consistent spacing
             }
             std::cout << std::endl;
         }
