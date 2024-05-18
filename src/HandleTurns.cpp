@@ -103,15 +103,13 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
 void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
     auto print_board = [](const std::vector<std::string> &matrix, const std::string &title) {
         std::cout << title << std::endl;
-        std::cout << " | A B C D E F G H" << std::endl;
-        std::cout << "-+----------------" << std::endl;
+        std::cout << "  | A B C D E F G H" << std::endl;  // Headers for columns
+        std::cout << "--+----------------" << std::endl;
         for (int i = 0; i < matrix.size(); ++i) {
-            std::cout << i + 1;
-            if (i < 9) std::cout << " ";  // Assure l'alignement pour les numéros de ligne à un chiffre
+            std::cout << i + 1 << (i < 9 ? " " : ""); // Adjust space for single digit
             std::cout << "|";
             for (int j = 0; j < matrix[i].length(); ++j) {
-                // Évitez de traiter les espaces comme des indices de grille valides
-                if (j % 2 != 0) continue; // Cette ligne assure que nous sautons les espaces entre les colonnes
+                if (j % 2 != 0) continue; // Skipping spaces between columns
 
                 char displayChar = matrix[i][j];
                 switch (displayChar) {
