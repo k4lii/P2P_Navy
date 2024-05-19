@@ -149,37 +149,44 @@ void HandleTurns::defense(std::vector<std::string> &myMatrix, std::vector<std::s
 
 void HandleTurns::print_boards(const std::vector<std::string> &myMatrix, const std::vector<std::string> &enemyMatrix) {
     clear();
-    int left_margin = 4;
-    int top_margin = 2;
-    int column_width = 2 * (myMatrix[0].size() + 1);
+    int left_margin = 10;  // Starting margin for the board
+    int top_margin = 3;  // Top margin for headers
+    int column_spacing = 4;  // Spacing between columns, increase if more space is needed
 
-    // Print the player's board
-    attron(COLOR_PAIR(3));
-    mvprintw(top_margin - 1, left_margin + 5, "A B C D E F G H"); // Adjusted column headers
-    mvprintw(top_margin, left_margin, "My Positions:");
-    draw_borders(stdscr, top_margin + 1, left_margin, 9 + 2, column_width + 4);  // Adjusted for 9 rows
-    for (int i = 0; i < 9; ++i) {  // Adjusted for 9 rows
-        mvprintw(top_margin + 1 + i, left_margin + 2, "%d ", i + 1);
-        for (int j = 0; j < myMatrix[i].length(); j += 2) {
-            print_char_by_type(myMatrix[i][j], top_margin + 1 + i, left_margin + 4 + j);
+    // Calculate the width based on column spacing and the number of columns
+    int board_width = column_spacing * 8 + 2; // 8 columns plus some padding, adjust the +2 if more space is needed at the edges
+
+    // Calculate enemy board starting position
+    int enemy_left_margin = left_margin + board_width + 10;  // Space between boards
+
+    // Print column headers
+    for (int i = 0; i < 8; ++i) {
+        mvprintw(top_margin - 2, left_margin + i * column_spacing + 2, "%c", 'A' + i);
+        mvprintw(top_margin - 2, enemy_left_margin + i * column_spacing + 2, "%c", 'A' + i);
+    }
+
+    // Print the board titles
+    mvprintw(top_margin - 1, left_margin, "My Positions:");
+    mvprintw(top_margin - 1, enemy_left_margin, "Enemy's Positions:");
+
+    // Draw the borders for each board
+    draw_borders(stdscr, top_margin, left_margin, 11, board_width);  // Increase height from 11 if needed
+    draw_borders(stdscr, top_margin, enemy_left_margin, 11, board_width);
+
+    // Print the grids
+    for (int i = 0; i < 9; ++i) {
+        mvprintw(top_margin + i, left_margin - 3, "%d", i + 1);
+        mvprintw(top_margin + i, enemy_left_margin - 3, "%d", i + 1);
+        for (int j = 0; j < 8; ++j) {
+            print_char_by_type(myMatrix[i][2 * j], top_margin + i, left_margin + j * column_spacing + 2);
+            print_char_by_type(enemyMatrix[i][2 * j], top_margin + i, enemy_left_margin + j * column_spacing + 2);
         }
     }
 
-    // Print the enemy's board
-    int enemy_left_margin = left_margin + column_width + 10;
-    mvprintw(top_margin - 1, enemy_left_margin + 5, "A B C D E F G H"); // Adjusted column headers
-    mvprintw(top_margin, enemy_left_margin, "Enemy's Positions:");
-    draw_borders(stdscr, top_margin + 1, enemy_left_margin, 9 + 2, column_width + 4);  // Adjusted for 9 rows
-    for (int i = 0; i < 9; ++i) {  // Adjusted for 9 rows
-        mvprintw(top_margin + 1 + i, enemy_left_margin + 2, "%d ", i + 1);
-        for (int j = 0; j < enemyMatrix[i].length(); j += 2) {
-            print_char_by_type(enemyMatrix[i][j], top_margin + 1 + i, enemy_left_margin + 4 + j);
-        }
-    }
-
-    attroff(COLOR_PAIR(3));
     refresh();
 }
+
+
 
 
 
